@@ -1,43 +1,99 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
 
-# Folder config file
-Desktop.ini
+## Intermediate documents:
+*.dvi
+# these rules might exclude image files for figures etc.
+# *.ps
+# *.eps
+# *.pdf
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+## Bibliography auxiliary files (bibtex/biblatex/biber):
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+## Build tool auxiliary files:
+*.fdb_latexmk
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+*Notes.bib
 
-# Windows shortcuts
-*.lnk
+## Auxiliary and intermediate files from other packages:
 
-# =========================
-# Operating System Files
-# =========================
+# algorithms
+*.alg
+*.loa
 
-# OSX
-# =========================
+# amsthm
+*.thm
 
-.DS_Store
-.AppleDouble
-.LSOverride
+# beamer
+*.nav
+*.snm
+*.vrb
 
-# Thumbnails
-._*
+#(e)ledmac/(e)ledpar
+*.end
+*.[1-9]
+*.[1-9][0-9]
+*.[1-9][0-9][0-9]
+*.[1-9]R
+*.[1-9][0-9]R
+*.[1-9][0-9][0-9]R
 
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
+# glossaries
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+# hyperref
+*.brf
+
+# listings
+*.lol
+
+# makeidx
+*.idx
+*.ilg
+*.ind
+*.ist
+
+# minitoc
+*.maf
+*.mtc
+*.mtc0
+
+# minted
+*.pyg
+
+# nomencl
+*.nlo
+
+# sagetex
+*.sagetex.sage
+*.sagetex.py
+*.sagetex.scmd
+
+# sympy
+*.sout
+*.sympy
+sympy-plots-for-*.tex/
+
+# todonotes
+*.tdo
+
+# xindy
+*.xdy
