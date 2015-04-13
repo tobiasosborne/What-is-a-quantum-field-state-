@@ -241,7 +241,7 @@ Casting an eye over the discussion in the previous section we isolate three core
 \begin{enumerate}
 	\item A space of observables $\mathcal{A}_{\text{reg}}$ for \emph{regulated} theories which are mathematically well behaved. The space $\mathcal{A}_{\text{reg}}$ is naturally parametrised with a \emph{cutoff} $\Lambda$, so that we can identify in $\mathcal{A}_{\text{reg}}$ the subspace $\mathcal{A}_{\Lambda}$ of theories with cutoff $\Lambda$.
 	\item A way to \emph{compare} the predictions of two theories with \emph{different} cutoffs -- an \emph{information metric}.
-	\item A way to identify the ``large-scale'' observables in $\mathcal{A}_{\text{reg}}$.
+	\item A way to identify the ``large-scale'' observables in $\mathcal{A}_{\text{reg}}$. It is only with respect to these observables that we actually compare two quantum field states.
 \end{enumerate}  
 As we argue below, once we've specified this ``minimal data'' we can exploit the Wilsonian view to define what is meant by a quantum field state.  
    
@@ -272,6 +272,19 @@ The next component we need to understand is how to \emph{compare} the prediction
 
 
 The final component is to specify the ``large-scale observables'' in $\mathcal{A}_{\text{reg}}$. This is done by specifying a \emph{completely positive map} $\mathcal{E}_\sigma : \mathcal{A}_{\text{reg}} \rightarrow \mathcal{A}_{\text{reg}}$, parametrised by one or more \emph{resolution} or \emph{scale parameters} $\sigma$, whose image is the convex set of all those effects measurable by large-scale observers (i.e., those measurement that we mere mortals can perform). 
+
+\section{Two examples}
+
+To illustrate the components of the Wilsonian formulation we'll specifically refer to two important examples 
+
+
+\subsection{The momentum cutoff}
+The class of examples is formulated in terms of
+
+Key points to stress: we automatically have a way to compare two states with different cutoff.
+
+\subsection{The real-space cutoff}
+The real-space cutoff is implemented by putting the system on a lattice. In contrast to the momentum cutoff case we have a new problem: how to compare the states of two different lattices. 
 
 \section{Quantum field states via completion}\label{sec:qftcompletion}
 Let's tell a story about how physicists on a world far far away might have invented the real numbers $\mathbb{R}$.  The scientists of this world wanted to measure distances using rulers with tick marks spaced at regular intervals. On this world it was agreed that all rulers had to have their ticks spaced by fractions of some standard tick length $a_0$ (the length of the emperor's foot). Thus the tick spacing $\epsilon a_0$ of a ruler was required to be a positive rational ratio $\epsilon \in \mathbb{Q}^+$ of the standard tick length $a_0$. Owing to its canonical nature $a_0$ was set to $1$ by convention. To the scientists of this world all lengths were rational numbers. 
