@@ -16,6 +16,7 @@
 \usepackage{xypic}
 \usepackage[shortalphabetic]{amsrefs}
 
+\usepackage{hyperref}
 
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 
@@ -210,12 +211,14 @@ The fewer the observables we can measure, the simpler our hypothesis for $\rho_{
 
 One aspect of this discussion may be puzzling for readers familiar with quantum field theories: why are we insisting on saying a change of scale is a lossy operation when, e.g., in CFTs a scale change is a \emph{reversible unitary operation}? The answer is that, in terms of a \emph{microscopic theory} with a cutoff, zooming out \emph{must} be a lossy operation as we can push degrees of freedom past the cutoff. However, in terms of an effective theory, a scale change can be unitary because there is an effective decoupling of the large-scale  and the small-scale degrees of freedom and the action of a finite scale change doesn't, \emph{in the large cutoff limit}, couple the different sets of degrees of freedom. 
 
-A quantum information theorist may find the analogy with noiseless subsystems helpful: if you like, effective theories are analogous to (approximate) decoherence-free subspaces/subsystem codes, where the errors in this case are induced by scale changes. This is a quantitative way to understand what is meant by IR/UV decoupling. If zooming out is a CP map $\mathcal{E}$ then what is ``zooming in'', or \emph{UV completion}? The answer is that there is no unique answer: any CP map $\mathcal{D}$ such that $\mathcal{D}\circ \mathcal{E} \equiv \mathcal{I}$ can be given the interpretation as a zooming in map. Exploiting once more the analogy with noiseless subsystems you can think of zooming out as an error recovery operation $\mathcal{D}$ on the large-scale degrees of freedom. We will return to this point later.
+A quantum information theorist may find the analogy with noiseless subsystems helpful: if you like, effective theories are analogous to (approximate) decoherence-free subspaces/subsystem codes, where the errors in this case are induced by scale changes. This is a quantitative way to understand what is meant by IR/UV decoupling. If zooming out is a CP map $\mathcal{E}$ then what is ``zooming in'', or \emph{UV completion}? The answer is that there is no unique answer: any CP map $\mathcal{D}$ such that $\mathcal{D}\circ \mathcal{E} \equiv \mathcal{I}$ can be given the interpretation as a zooming in map\red{. That is, first adding details (zooming in) and then removing them (zooming out) should have no effect (recall that we write the channels in the Heisenberg picture, so the order is inverted)}. Exploiting once more the analogy with noiseless subsystems you can think of zooming \red{in} as an error recovery operation $\mathcal{D}$ on the large-scale degrees of freedom. We will return to this point later.
 
 \section{The Wilsonian formulation of effective quantum field theory}\label{sec:wilson}
+\red{[This is confusing because you are really talking about lagrangian, but using symbols already defined to mean observables etc..]}
+
 Here we review, broadly following the expositions of \cite{wilson_renormalization_1975} and \cite{moore_lecture_2012}, the Wilsonian view of quantum field theory as an effective field theory. It is \emph{not at all} necessary to understand the discussion here at anything other than a metaphoric level as we are going to revisit the ideas of this section many times in the sequel to make the intuitive discussions here more concrete. Just read through the description and try and absorb the general flavour. 
 
-In the Wilsonian formulation we begin with the space of observables/effects $\mathcal{A}_{\text{reg}}$ of \emph{regulated} or \emph{cutoff} quantum field theories\footnote{Remember: we always specify our theories in terms of observables.}. What are these? Well, there are an infinite number of ways to define them, but one you can keep in mind is by simply putting a theory on a lattice. It is important, at this stage, to emphasise that the regulated theories are the only ones which are expected to make mathematical sense. You can think of $\mathcal{A}_{\text{reg}}$ as the (direct sum of the) space of observables for all possible theories of bosons and fermions hopping on lattices with some \emph{nonzero} lattice spacing $a = 1/\Lambda$. (This way of defining a cutoff QFT is certainly not the most elegant, but it does enjoy considerable advantages for evaluation on a computer.) Thus $\mathcal{A}_{\text{reg}}$ can be thought of as the space of all lattice theories with nonzero lattice spacings: for each $\Lambda$ there is a subspace $\mathcal{A}_\Lambda$ corresponding to the observables/effects of lattice theories with a cutoff given by $\Lambda$, and these are all identified with their image in $\mathcal{A}_{\text{reg}}$ via some \emph{embedding} map $f_\Lambda:\mathcal{A}_\Lambda\rightarrow \mathcal{A}$. 
+In the Wilsonian formulation we begin with the space of observables/effects $\mathcal{A}_{\text{reg}}$ of \emph{regulated} or \emph{cutoff} quantum field theories\footnote{Remember: we always specify our theories in terms of observables.}. What are these? Well, there are an infinite number of ways to define them, but one you can keep in mind is by simply putting a theory on a lattice. It is important, at this stage, to emphasise that the regulated theories are the only ones which are expected to make mathematical sense. You can think of $\mathcal{A}_{\text{reg}}$ as the (direct sum of the) space of observables for all possible theories of bosons and fermions hopping on lattices with some \emph{nonzero} lattice spacing $a = 1/\Lambda$. (This way of defining a cutoff QFT is certainly not the most elegant, but it does enjoy considerable advantages for evaluation on a computer.) Thus $\mathcal{A}_{\text{reg}}$ can be thought of as the space of all lattice theories with nonzero lattice spacings: for each $\Lambda$ there is a subspace $\mathcal{A}_\Lambda$ corresponding to the observables/effects of lattice theories with a cutoff given by $\Lambda$, and these are all identified with their image in $\mathcal{A}_{\text{reg}}$ via some \emph{embedding} map $f_\Lambda:\mathcal{A}_\Lambda\rightarrow \mathcal{A}_{\red{\rm reg}}$. 
 
 Once you have cut off a quantum field theory most, if not all, of the nasty divergences you've heard about disappear, and we only have to cope with more pedestrian divergences familiar to condensed matter physicists (e.g., the ``orthogonality catastrophe'' and ``infrared divergences''). 
 
@@ -223,27 +226,28 @@ One might be tempted to think that $\mathcal{A}_{\text{reg}}$ is already the spa
 
 Hence we now imagine that $\mathcal{A}_{\text{reg}}$ lives inside some even larger space $\mathcal{A}$ of ``all'' observables/effects of quantum field theories (whatever that might mean), with or without regulator. This is rather vague, but we argue below that we can ignore almost all the theories in $\mathcal{A}\setminus\mathcal{A}_{\text{reg}}$, as only a small fraction are \emph{physically relevant}.
 
-Let's now construct a proper quantum field theory, i.e., a theory without cutoff. To do this suppose that for a particular given theory $(\mathcal{A}_\Lambda, \mathcal{E}_{t,\Lambda}, \omega_\Lambda)$ with observables $\mathcal{A}_\Lambda \subset \mathcal{A}_{\text{reg}}$ and cutoff $\Lambda$ we can always find a \emph{physically equivalent} theory $(\mathcal{A}_{\Lambda'}, \mathcal{E}_{t,\Lambda'}, \omega_{\Lambda'})$ with $\mathcal{A}_{\Lambda'} \subset \mathcal{A}_{\text{reg}}$ having a larger cutoff $\Lambda' > \Lambda$. If we can always do this then there is nothing stopping us sending the cutoff $\Lambda'\rightarrow \infty$ and calling the result a quantum field theory proper. 
+Let's now construct a proper quantum field theory, i.e., a theory without cutoff. To do this suppose that for a particular given theory $(\mathcal{A}_\Lambda, \mathcal{E}_{t,\Lambda}, \omega_\Lambda)$ with observables $\mathcal{A}_\Lambda \subset \mathcal{A}_{\text{reg}}$ and cutoff $\Lambda$ we can always find a \emph{physically equivalent} theory $(\mathcal{A}_{\Lambda'}, \mathcal{E}_{t,\Lambda'}, \omega_{\Lambda'})$ with $\mathcal{A}_{\Lambda'} \subset \mathcal{A}_{\text{reg}}$ having a larger cutoff $\Lambda' > \Lambda$. If we can always do this then there is nothing stopping us sending the cutoff $\Lambda'\rightarrow \infty$ and calling the result a quantum field theory proper.  
 
 What does it mean for a theory to have a larger cutoff than another theory? One clean operational interpretation is that all the \emph{effects} of our original theory can be found in the space of effects for the new theory with a larger cutoff. Thus, corresponding to the operation of changing cutoff from $\Lambda$ to $\Lambda' > \Lambda$, there must be a map
 \begin{equation}
 	\mathcal{F}_{\Lambda,\Lambda'}: \mathcal{A}_\Lambda \rightarrow \mathcal{A}_{\Lambda'}
 \end{equation}
 which identifies the effects of the lower-cutoff space with corresponding \emph{physically identical} effects in the higher-cutoff space. 
-How do we determine this map? The standard answer is that the \emph{low-order correlation functions of large-scale low-energy observables} need to be preserved under the cutoff changing operation $\mathcal{F}_{\Lambda,\Lambda'}$. In other words: if we make a prediction for low-energy large-scale observables using a theory with cutoff $\Lambda$ then a \emph{physically equivalent} theory $\mathcal{A}_{\Lambda'}$ must give the same predictions for the original low-energy large scale observables. This map is not trivial to determine; this is where we need to do some physics!
+How do we determine this map? The standard answer is that the \emph{low-order correlation functions of large-scale low-energy observables} need to be preserved under the cutoff changing operation $\mathcal{F}_{\Lambda,\Lambda'}$. In other words: if we make a prediction for low-energy large-scale observables using a theory with cutoff $\Lambda$ then a \emph{physically equivalent} theory $\mathcal{A}_{\Lambda'}$ must give the same predictions for the original low-energy large scale observables. This map is not trivial to determine; this is where we need to do some physics! \red{[shouldn't one refer to $\mathcal E$ here as defining "low-energy" or "large-scale" since it is mentioned before?, or are we avoiding this because this is Wilson's view? But then already introducing $\mathcal E$ before this paragraph might be confusing?]}
 
-Suppose we assume further that the dependence of $\mathcal{F}_{\Lambda,\Lambda'}$ is continuous, then we generate a \emph{flow} on $\mathcal{A}_{\text{reg}}$ (and hence on $\mathcal{A}$) via the map
+Suppose we assume further that the dependence of $\mathcal{F}_{\Lambda,\Lambda'}$ is continuous \red{[You mean $\Lambda$ continuous..]}, then we generate a \emph{flow} on $\mathcal{A}_{\text{reg}}$ (and hence on $\mathcal{A}$) via the map  \red{[What could $f^{-1}$ be? ]}
 \begin{equation}
-	f_\Lambda\circ \mathcal{F}_{\Lambda,\Lambda'}\circ f_\Lambda^{-1}   
+	f_{\Lambda'}\circ \mathcal{F}_{\Lambda,\Lambda'}\circ f_\Lambda^{-1}   
 \end{equation}   
 according to the diagram
 \begin{equation}
 \xymatrix{
 \mathcal{A}_{\Lambda} \ar[rr]^{\mathcal{F}_{\Lambda,\Lambda'}}
 \ar[dr]_{f_\Lambda}\hole
-&& \mathcal{A}_{\Lambda'} \ar[dl]^{f_\Lambda'}\\
+&& \mathcal{A}_{\Lambda'} \ar[dl]^{f_{\Lambda'}}\\
 & \mathcal{A}_{\text{reg}} }
 \end{equation}
+\red{[What about states? I don't understand this...]}
 It is usually assumed  that that this flow on the infinite-dimensional space $\mathcal{A}_{\text{reg}}$ is generated by a \emph{vector field}, called the \emph{beta function}. A very special role is played by the \emph{fixed points} of this flow, as they correspond to genuine cutoff-free quantum field theories, i.e., theories of continuously many degrees of freedom. But does $\mathcal{A}_{\text{reg}}$ contain any such fixed points? This is an important question which leads us closer to a resonable definition of $\mathcal{A}$ as the original space $\mathcal{A}_{\text{reg}}$ with missing points adjoined. Again the analogy with $\mathbb{Q}$ is helpful here: fixed points of well-defined maps on $\mathbb{Q}$ can easily fail to be in $\mathbb{Q}$, for example, consider $f(x) = x^2-1$: the fixed points of this map are $x_{\pm} = \frac{1\pm\sqrt{5}}{2}$. Thus we can tentatively think of $\mathcal{A}$ as the space of regulated theories with possibly missing fixed points of $\mathcal{F}_{\Lambda,\Lambda'}$ adjoined. It turns out that this picture is pretty close to the actual definition. Conformal field theories, being scale invariant, are then precisely fixed points.
 
 It is standard to parametrise QFTs by \emph{local lagrangians}, which basically sort of amounts to a choice of a coordinate system for our mythical $\mathcal{A}$. Doing things this way tends to incentivise the  conflation of both states and effects into one object via the \emph{path integral}. The space $\mathcal{M}$ of lagrangians is an infinite-dimensional linear manifold with a coordinate for each local term you can add, e.g., 
@@ -258,6 +262,7 @@ The point of view taken in this paper is to describe how to apply the Wilsonian 
 
 
 \section{Effective quantum field states and the Wilsonian formulation}\label{sec:effectiveqftstates}
+\red{[Nearly same title as previous section...]}
 
 The core objective of these notes is to come up with a definition of a \emph{quantum field state} which is hopefully applicable across a broad range of situations from systems with a lattice cutoff to systems with a momentum cutoff, and beyond. However, the Wilsonian formulation described in the previous section, applying as it does to a hybrid of the observables and states, doesn't directly suggest a good definition; we'll need to employ a little imagination to extract a general formulation which looks a little friendlier for quantum information theorists. 
 
@@ -313,6 +318,7 @@ This map identifies the observables for a given interval $I_j$ with the physical
 \end{equation}
 and has the property that it maps the state $|00\rangle$ to $|0\rangle$ and $\frac{1}{\sqrt{2}} \left(|10\rangle+|01\rangle\right)$ to $|1\rangle$. 
 
+\red{[The symbol $\mathcal E$ was used for the coarse-graining before...]}
 Using the map $\mathcal{E}$ we build the map 
 \begin{equation}
 	\mathcal{F}_{j,j+1} \equiv \bigotimes_{j\in 2\mathbb{Z}} \mathcal{E},
@@ -343,7 +349,7 @@ The next vital ingredient for the Wilsonian formulation is the selection of an o
 \begin{equation}
 	D^2_j(\rho_1,\rho_2) \equiv 2\left(1-\tr\left(\sqrt{\sqrt{\rho_1}\rho_2\sqrt{\rho_1}}\right)\right).
 \end{equation}
-(Here we are assuming the states are representable as trace-class operators.)
+(Here we are assuming the states are representable as trace-class operators.) 
 It is a nontrivial question how this metric extends from $\mathcal{S}(\mathcal{A}_{2^{-j}})$ to $\mathcal{S}_{\text{reg}}$ in a natural way. We deal with this by defining, for any pair $\rho_1$ and $\rho_2$ of states in $\mathcal{S}_{\text{reg}}$ the metric
 \begin{equation}
 	D^2(\rho_1,\rho_2) \equiv \lim_{j\rightarrow\infty}  D^2_j(\rho_{1,j},\rho_{2,j}).
@@ -395,8 +401,8 @@ Let's isolate two key features of this allegory. Firstly, we have the space of `
 
 \subsection{What a field state is}
 By analogy with the construction of the rational numbers in the previous section we now describe how to define a \emph{quantum field state}. What we need 
-\begin{enumerate}
-	\item Define a set $\mathcal{F}$ of \emph{regularised} field states which specify the field state to some finite accuracy (these states are analogous to the positive rationals $\mathbb{Q}^+$); and
+\begin{enumerate} 
+	\item Define a set $\mathcal{F}$ \red{[that symbol was already used for something else. shouldn't it be $S_{\rm reg}$?]} of \emph{regularised} field states which specify the field state to some finite accuracy (these states are analogous to the positive rationals $\mathbb{Q}^+$); and
 	\item define \emph{accuracy}, i.e., a way of saying if two regularised field states $\rho$ and $\rho'$ are effectively indistinguishable given certain idealised experimental limitations specified by a list of numbers, called \emph{resolutions}, $r \equiv (\sigma, h, \ldots)$. (This requirement is analogous to writing $|x-y|<\epsilon$ for the positive rationals.)
 \end{enumerate}
 
