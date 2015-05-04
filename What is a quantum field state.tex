@@ -214,8 +214,6 @@ One aspect of this discussion may be puzzling for readers familiar with quantum 
 A quantum information theorist may find the analogy with noiseless subsystems helpful: if you like, effective theories are analogous to (approximate) decoherence-free subspaces/subsystem codes, where the errors in this case are induced by scale changes. This is a quantitative way to understand what is meant by IR/UV decoupling. If zooming out is a CP map $\mathcal{E}$ then what is ``zooming in'', or \emph{UV completion}? The answer is that there is no unique answer: any CP map $\mathcal{D}$ such that $\mathcal{D}\circ \mathcal{E} \equiv \mathcal{I}$ can be given the interpretation as a zooming in map. That is, first adding details (zooming in) and then removing them (zooming out) should have no effect (recall that we write the channels in the Heisenberg picture, so the order is inverted). Exploiting once more the analogy with noiseless subsystems you can think of zooming in as an error recovery operation $\mathcal{D}$ on the large-scale degrees of freedom. We will return to this point later.
 
 \section{The Wilsonian formulation of effective quantum field theory}\label{sec:wilson}
-\red{[This is confusing because you are really talking about lagrangian, but using symbols already defined to mean observables etc..]}
-
 Here we review, broadly following the expositions of \cite{wilson_renormalization_1975}, \cite{peskin_introduction_1995}, and \cite{moore_lecture_2012}, the Wilsonian view of quantum field theory as an effective field theory. It is \emph{not at all} necessary to understand the discussion here at anything other than a metaphoric level as we are going to revisit the ideas of this section in the sequel to make the intuitive discussions here more concrete. Just read through the description and try and absorb the general flavour. 
 
 Traditionally the Wilsonian formulation is discussed in terms of the \emph{path integral} representation. We choose to avoid all the details of this representation; for the purposes of the overview here it is enough to regard a path integral as a \emph{box} which is parametrised by an \emph{action} via a \emph{lagrangian}, e.g.,  $\mathcal{L} = \frac12(\partial_\mu \phi)^2 - \frac12 m^2 \phi^2 - \frac{1}{4!}\lambda \phi^4 - C(\partial_\mu\phi)^4 - D\phi^6 - \cdots$,  which is itself parametrised by a list of some numbers, called \emph{coupling constants} $(m,\lambda, C, D, \ldots)$. This box can produce the vacuum expectation values of certain ``observables'' we want to call quantum field operators:
@@ -225,7 +223,9 @@ Traditionally the Wilsonian formulation is discussed in terms of the \emph{path 
 	\text{``$=$''} & \vcenter{\includegraphics{pathintegral.pdf}}
 	\end{split}
 \end{equation}
-where $\mathcal{T}$ denotes \emph{time ordering} (here the variables $x_1, x_2, \ldots$ denote \emph{spacetime locations}). Lagrangians are, in combination with the path integral, a wonderfully compact way specify QFTs in a way that makes locality, causality, and symmetries such as Lorentz invariance manifest. However, they have the not inconsiderable downside that it is often very hard to compute correlation functions except perturbatively around special points.  We thus think of \emph{quantum theories}\footnote{The $n$-point correlation functions may be at unequal times and thus encode both the kinematics and dynamics.}, being  in this case the specification of all $n$-point functions via the path integral above, as being parametrised by the (infinite) list of coupling constants $(m, \lambda, C, D, \ldots)$. We further imagine that the coupling constants are the coordinates for some fictitious infinite dimensional manifold $\mathcal{M}$ which we call the \emph{manifold of all theories}:
+where $\mathcal{T}$ denotes \emph{time ordering} (here the variables $x_1, x_2, \ldots$ denote \emph{spacetime locations}). Lagrangians are, in combination with the path integral, a wonderfully compact way specify QFTs in a way that makes locality, causality, and symmetries such as Lorentz invariance manifest. However, they have the not inconsiderable downside that it is often very hard to compute correlation functions except perturbatively around special points.  
+
+We thus think of \emph{quantum theories}\footnote{The arguments of $n$-point correlation functions may be at unequal times and thus encode both kinematics and dynamics.}, being  in this case the specification of all $n$-point functions via the path integral above, as being parametrised by the (infinite) list of coupling constants $(m, \lambda, C, D, \ldots)$. We further imagine that the coupling constants are the coordinates for some fictitious infinite dimensional manifold $\mathcal{M}$ which we call the \emph{manifold of all theories}:
 \begin{center}
 	\includegraphics{manifold.pdf}
 \end{center}
@@ -263,15 +263,16 @@ The point of view taken in this paper is to describe how to apply the Wilsonian 
 
 \section{Effective quantum field states}\label{sec:effectiveqftstates}
 
-The core objective of these notes is to come up with a definition of a \emph{quantum field state} which is hopefully applicable across a broad range of situations from systems with a lattice cutoff to systems with a momentum cutoff, and beyond. However, the Wilsonian formulation described in the previous section, applying as it does to a hybrid of the observables and states, doesn't directly suggest a good definition; we'll need to employ a little imagination to extract a general formulation which looks a little friendlier for quantum information theorists. 
+The core (and rather ambitious) objective of these notes is to come up with a definition of a \emph{quantum field state} which is hopefully applicable across a broad range of situations from systems with a lattice cutoff where it should match, e.g., the quantum field approximation to the transverse Ising model \cite{sachdev_quantum_2011}, to systems with a momentum cutoff, where it should match the results of standard perturbation theory, and, hopefully, beyond. However, the Wilsonian formulation described in the previous section, applying as it does to a hybrid of the observables and states, doesn't directly suggest a good definition; we'll need to employ a little imagination to extract a general formulation which looks a little friendlier for quantum information theorists. 
 
-Casting an eye over the discussion in the previous section we isolate three core ingredients:
+Casting an eye over the discussion in the previous section we isolate four core ingredients:
 \begin{enumerate}
-	\item A space of observables $\mathcal{A}_{\text{reg}}$ for \emph{regulated} theories which are mathematically well behaved. The space $\mathcal{A}_{\text{reg}}$ should be naturally parametrised by one or more a \emph{cutoffs}\footnote{It turns out that when you have more general cutoffs, e.g., by arbitrary nonregular spatial discretisations, then the additional structure you need is a \emph{partial order} on the space of cutoffs; this is usually canonical and we only discuss this problem in the context of two examples.} $\Lambda$, so that we can identify in $\mathcal{A}_{\text{reg}}$ the subspace $\mathcal{A}_{\Lambda}$ of theories with cutoff $\Lambda$. There is a great deal of arbitrariness here and we only pursue the details for two examples, namely, the momentum-space and real-space cutoffs. 
+	\item A space of observables $\mathcal{A}_{\text{reg}}$ for \emph{regulated} theories which are mathematically well behaved. The space $\mathcal{A}_{\text{reg}}$ should be naturally parametrised by one or more a \emph{cutoffs}\footnote{It turns out that when you have more general cutoffs, e.g., by arbitrary nonregular spatial discretisations, then the additional structure you need is a \emph{partial order} on the space of cutoffs; this is usually canonical and we only discuss this problem in the context of two examples.} $\Lambda$, so that we can identify in $\mathcal{A}_{\text{reg}}$ the subspace $\mathcal{A}_{\Lambda}$ of theories with cutoff $\Lambda$. There is a great deal of arbitrariness here and we only pursue the details for two examples, namely, the momentum-space and real-space cutoffs.
+	\item A state $\rho_0$ on the space of regulated observables. This specification allows us to restrict our attention to studying fluctuations around a given hypothesis for the vacuum of the effective theory. Technically it allows us to build a representation of our observables as operators on a hilbert space.  
 	\item A way to \emph{compare} the predictions of two theories with \emph{different} cutoffs -- an \emph{information metric}. We do this by agreeing on an operationally motivated distance measure on the \emph{state spaces} $\mathcal{S}_\Lambda$ of the $\mathcal{A}_\Lambda$s, and then extending this to the state space $\mathcal{S}_{\text{reg}}$ of \emph{all} regulated states on $\mathcal{A}_{\text{reg}}$.
 	\item A definition for ``large-scale'' observables. This is done by specifying a \emph{completely positive map} $\mathcal{E}_\sigma : \mathcal{A}_{\text{reg}} \rightarrow \mathcal{A}_{\text{reg}}$, parametrised by one or more \emph{resolution} or \emph{scale parameters} $\sigma$, whose image is the convex set of all those effects measurable by large-scale observers (i.e., those measurement that we mere mortals can perform). It is only with respect to these observables that we actually compare two quantum field states.
 \end{enumerate}  
-As we argue below, once we've specified this ``minimal data'' we can exploit the Wilsonian view to define what is meant by a quantum field state.    
+As we argue below, once we've specified this ``minimal data'' we can exploit the Wilsonian view to define what is meant by a quantum field state. It is worth noting that it is possible, in some cases, to avoid specifying all four objects above and still end up with a meaningful notion of a quantum field state.
 
 To concretely illustrate the components of the Wilsonian formulation we'll specifically refer to two important examples. The first example is a standard choice in QFT, namely that of the (hard or smooth) momentum cutoff. We briefly sketch the data required for the Wilsonian formulation in this case and connect it with the traditional description of perturbative interacting QFT by specifying a ``zooming-out'' CP map. The second example we consider, namely, the real-space cutoff requires a little more care to put it into a form appropriate for the Wilsonian formulation: here we encounter additional problems because we need to compare lattices with different lattice spacing. We show how Kadanoff blocking supplies us with a solution, and further how to use introduce a ``zooming-out'' CP map describing the large-scale observables. 
 
@@ -285,21 +286,29 @@ The real-space cutoff is implemented by putting the system on a lattice with (va
 
 We begin by building the space of observables for a one-dimensional system with a \emph{fixed} real-space cutoff, i.e., a lattice $L_a$ with spacing $a$: this is a regular partition of the real line $\mathbb{R}$ by a collection of lattice cells of the form $I_j \equiv [ja, (j+1)a)$, i.e., $L_a \equiv \{I_j\}_{j\in \mathbb{Z}}$. For concreteness we focus on the example a system where we associate a quantum spin-$1/2$ degree of freedom (i.e., a qubit) with each lattice \emph{cell}\footnote{We associate degrees of freedom with cells rather than vertices as we (usually) regard them as representing the averaged value of some physical quantity, e.g., angular momentum, over the cell.}, or \emph{link}, $I_j$. The hilbert space for such a system would naively be the infinite tensor product of $\mathbb{C}^2$, one for each lattice cell. However, we avoid the discussion of how to make sense of this for the moment and instead describe the arguably more natural space of observables for this system. This space is built as follows: for any finite subset $\Lambda \subset L_a$ of lattice cells let $\mathcal{A}(\Lambda)$ be the tensor product of $M_2(\mathbb{C})$ over each $I_j\in \Lambda$. For $\Lambda_1\subset \Lambda_2$ we identify $\mathcal{A}(\Lambda_1)$ in a natural way with $\mathcal{A}(\Lambda_1)\otimes \mathbb{I}_{\Lambda_2\setminus \Lambda_1} \subset \mathcal{A}(\Lambda_2)$. For infinite $\Lambda \subset L_a$ denote by $\mathcal{A}(\Lambda)$ the $C^*$-closure of the increasing family of finite-dimensional algebras $\mathcal{A}(\Lambda_f)$ with $\Lambda_f \subset \Lambda$. What this means in words is that $\mathcal{A}(\Lambda)$ contains all observables which act on at most a finite number of spins as well as observables which are \emph{well approximated} by sequences of observables acting on at most a finite number of spins. The \emph{quasi-local algebra} is then $\mathcal{A}(L_a)$, and this is the space of observables we associate with our regulated system. 
 
-To get a feel for what kinds of observables live in $\mathcal{A}(L_a)$ we consider a couple of examples. The simplest is a single-site operator, e.g., $\sigma^z_j$ (we adopt the simpler subscript notation $A_j \equiv A_{I_j}$ for an operator acting nontrivially only on lattice cell $I_j$). An example of an observable well-approximated by a sequence of finite-support operators is $\sum_{j\ge 0} e^{-j}\sigma^z_0 \sigma_1^z  \cdots \sigma_{j-1}^z\sigma_j^z$. An important class of observables that \emph{do not} live in $\mathcal{A}(L_a)$ are the ``bulk field''-type observables, e.g., $M_z \equiv \sum_{j\in\mathbb{Z}} \sigma^z_j$. Another type of observable that doesn't live in $\mathcal{A}(L_a)$ is given by the finite-rank projections $P$. Also, spectral projections for bulk observables like $M_z$ are outside of $\mathcal{A}(L_a)$. This ``deficit'' of the observable set $\mathcal{A}(L_a)$ can be corrected by passing to a von Neumann algebra, however this requires the introduction of a reference state, a step we don't yet wish to take. 
+To get a feel for what kinds of observables live in $\mathcal{A}(L_a)$ we consider a couple of examples. The simplest is a single-site operator, e.g., $\sigma^z_j$ (we adopt the simpler subscript notation $A_j \equiv A_{I_j}$ for an operator acting nontrivially only on lattice cell $I_j$). An example of an observable well-approximated by a sequence of finite-support operators is $\sum_{j\ge 0} e^{-j}\sigma^z_0 \sigma_1^z  \cdots \sigma_{j-1}^z\sigma_j^z$. An important class of observables that \emph{do not} live in $\mathcal{A}(L_a)$ are the ``mean field''-type observables, e.g., $M_z \text{``$\equiv$''} \lim_{n\rightarrow\infty}\frac{1}{n}\sum_{j = 0}^{n-1} \sigma^z_j$. Another type of observable that doesn't live in $\mathcal{A}(L_a)$ is given by the finite-rank projections $P$. Also, spectral projections for bulk observables like $M_z$ are outside of $\mathcal{A}(L_a)$. This ``deficit'' of the observable set $\mathcal{A}(L_a)$ can be corrected by passing to a von Neumann algebra, however this requires the introduction of a reference state, a step we don't yet wish to take. 
 
-The space $\mathcal{A}(L_a)$ is specifically tied to a lattice with a \emph{fixed} spacing $a$. However, the space $\mathcal{A}_{\text{reg}}$ of regulated observables should contain observables with arbitrary (yet always nonzero) real-space cutoff $a$. The way we accommodate this possibility is to build $\mathcal{A}_{\text{reg}}$ from the \emph{direct sum} of $\mathcal{A}(L_a)$ over a sequence of allowed values of the lattice spacing $a$. It is possible to allow any nonnegative value for $a$, but this is a little more awkward in practice. As we'll see, allowing $a$ to be an arbitrary simple dyadic rational of the form $2^{-j}$ will already suffice. The way to capture all these possible observables is then via the object 
+The space $\mathcal{A}(L_a)$ is specifically tied to a lattice with a \emph{fixed} spacing $a$. However, the space $\mathcal{A}_{\text{reg}}$ of regulated observables should contain observables corresponding to experiments on systems with arbitrary (yet always nonzero) lattice spacing $a$. The way we accommodate this possibility is to build $\mathcal{A}_{\text{reg}}$ from the \emph{direct sum} of $\mathcal{A}(L_a)$ over a sequence of allowed values of the lattice spacing $a$. It is possible to allow any nonnegative value for $a$, but this is a little more awkward in practice. As we'll see, allowing $a$ to be an arbitrary simple dyadic rational of the form $2^{-j}$ will already suffice. The way to capture all these possible observables is then via the object 
 \begin{equation*}
 	\mathcal{A}_{\text{pre}} \equiv \bigoplus_{j \in \mathbb{Z}^+} \mathcal{A}(L_{2^{-j}}).
 \end{equation*}
-This is an economical way of allowing observables of lattices of arbitrarily small lattice spacing\footnote{The astute reader will notice that $\mathcal{A}_{\text{pre}}$ doesn't contain the identity. We'll mostly ignore this subtlety because an approximate identity suffices to yield a reasonable operational interpretation.}. The kind of physical situation modelled by the observable set $\mathcal{A}_{\text{pre}}$ is that of a system with a classical dial controlling the lattice spacing (this can be implemented in the laboratory by putting sample in a liquid and increasing the pressure). A typical positive observable living in $\mathcal{A}_{\text{pre}}$ has the form of a finite convex combination $\sum_{l=1}^n M_{a_l}$ of observables $M_{a_l}$ for lattices with possibly different spacings $a_l$; such observables correspond to the experiment where a collection of coins are first flipped and, conditioned on the outcome, the observable $M_{a_l}$ is subsequently measured. 
+This is an economical way of allowing observables of lattices of arbitrarily small lattice spacing\footnote{The astute reader will notice that $\mathcal{A}_{\text{pre}}$ doesn't contain the identity. We'll mostly ignore this subtlety because an approximate identity suffices to yield a reasonable operational interpretation.}. The kind of physical situation modelled by the observable set $\mathcal{A}_{\text{pre}}$ is that of a system with a \emph{classical} dial controlling the lattice spacing (this can be implemented in the laboratory by, e.g., putting the sample in a liquid and increasing the pressure). A typical positive observable living in $\mathcal{A}_{\text{pre}}$ has the form of a finite convex combination $\sum_{l=1}^n M(a_l)$ of observables $M(a_l)\in\mathcal{A}(L_{a_l})$ for lattices with possibly different spacings $a_l$; such observables correspond to the experiment where a collection of coins are first flipped and, conditioned on the outcome, the observable $M(a_l)$ is subsequently measured. 
 
-It turns out that the observable set $\mathcal{A}_{\text{pre}}$ doesn't quite correspond to situation we wish to model -- it is a little too large. This is because there is no notion of whether an observable corresponds to the same physical quantity, only measured on a lattice with a different lattice spacing. The picture to have in mind here is of a neutron scattering experiment where the same impinging beam scatters from the sample, regardless of the lattice spacing. To express this additional structure we introduce an equivalence relation on $\mathcal{A}_{\text{pre}}$ by introducing the subspace $N \subset \mathcal{A}_{\text{pre}}$ generated by all the differences $M_{a}-M_{a'}$, where $M_{a}$ and $M_{a'}$ are meant to correspond to the same experiment, only on different lattice spacings $a$ and $a'$. Using $N$ we can finally define $\mathcal{A}_{\text{reg}}$:
+It turns out that the observable set $\mathcal{A}_{\text{pre}}$ doesn't quite correspond to the situation we wish to model -- it is a little too large. This is because there is no notion of whether an observable corresponds to the same physical quantity, only measured on a lattice with a different lattice spacing. The picture to have in mind here is that of a neutron scattering experiment where the same impinging beam scatters from the sample, regardless of the lattice spacing: 
+\begin{center}
+	\includegraphics{decreasea.pdf}
+\end{center}
+To accommodate this additional structure we introduce an \emph{equivalence relation} on $\mathcal{A}_{\text{pre}}$ by introducing the subspace $N \subset \mathcal{A}_{\text{pre}}$ generated by all the differences $M_{a}-M_{a'}$, where $M_{a}$ and $M_{a'}$ are meant to correspond to the same experiment, only on different lattice spacings $a$ and $a'$. Using $N$ we can finally define $\mathcal{A}_{\text{reg}}$:
 \begin{equation}
 	\mathcal{A}_{\text{reg}} \equiv \mathcal{A}_{\text{pre}}/N.
 \end{equation}
 The equivalence relation on observables, and subsequently, the definition of $N$, is determined by \emph{physics}, and no amount of abstract nonsense will assist us in going further. 
 
-In order to prevent this discussion from becoming too ethereal we now consider a particular concrete example in some detail. The physical picture we have in mind for this example is that of a quantum magnet with ground state $|\Omega\rangle \equiv \bigotimes_{j\in\mathbb{Z}} |0\rangle$. The magnet is assumed to have some magnons, represented as $|1\rangle$ states at certain locations, propagating around. For a given lattice spacing the state $|1\rangle_{I_j}$ represents a quantum magnon in somewhere in $I_j$, i.e., completely delocalised across the lattice cell $I_j$. If we subdivide the lattice cell into two contiguous equal-sized pieces $I_j \equiv I_{2j}'\cup I_{2j+1}'$ then it ought to be the case that $|1\rangle_{I_j}$ is an equal superposition of the magnon being on the left and right sides:
+In order to prevent this discussion from becoming too ethereal we now consider a very particular concrete example in some detail. The physical picture we have in mind for this example is that of a quantum magnet modelled, e.g., by the ferromagnetic Heisenberg model
+\begin{equation}
+	H = -\sum_{j\in\mathbb{Z}} \boldsymbol{\sigma}_j\cdot\boldsymbol{\sigma}_{j+1},
+\end{equation}
+with ground state $|\Omega\rangle \equiv \bigotimes_{j\in\mathbb{Z}} |0\rangle$. The magnet is assumed to have some magnons, represented as $|1\rangle$ states at certain locations, propagating around. For a given lattice spacing the state $|1\rangle_{I_j}$ represents a quantum magnon in somewhere in $I_j$, i.e., completely delocalised across the lattice cell $I_j$. If we subdivide the lattice cell into two contiguous equal-sized pieces $I_j \equiv I_{2j}'\cup I_{2j+1}'$ then it ought to be the case that $|1\rangle_{I_j}$ is an equal superposition of the magnon being on the left and right sides:
 \begin{equation}
 	|1\rangle_{I_j} \equiv \frac{1}{\sqrt{2}} \left(|1\rangle_{I_{2j}'}|0\rangle_{I_{2j+1}'}+|0\rangle_{I_{2j}'}|1\rangle_{I_{2j+1}'}\right).
 \end{equation}
@@ -309,28 +318,27 @@ So far this notion of equivalence has been described in terms of states rather t
 \end{equation}
 Using $U$ we build the CP map (in the heisenberg picture):
 \begin{equation}
-	\mathcal{E}(A) \equiv U^\dag (A\otimes \mathbb{I}) U.
+	\mathcal{U}(A) \equiv U^\dag (A\otimes \mathbb{I}) U.
 \end{equation}
 This map identifies the observables for a given interval $I_j$ with the physically identical observables for two equal sized contiguous intervals $I_{2j}$ and $I_{2j+1}$. The corresponding CP map in the Schr\"odinger picture is given by
 \begin{equation}
-	\mathcal{E}^{*}(\rho) \equiv \tr_2( U \rho U^\dag),
+	\mathcal{U}^{*}(\rho) \equiv \tr_2( U \rho U^\dag),
 \end{equation}
 and has the property that it maps the state $|00\rangle$ to $|0\rangle$ and $\frac{1}{\sqrt{2}} \left(|10\rangle+|01\rangle\right)$ to $|1\rangle$. 
 
-\red{[The symbol $\mathcal E$ was used for the coarse-graining before...]}
-Using the map $\mathcal{E}$ we build the map 
+Using the map $\mathcal{U}$ we build the map 
 \begin{equation}
-	\mathcal{F}_{j,j+1} \equiv \bigotimes_{j\in 2\mathbb{Z}} \mathcal{E},
+	\mathcal{F}_{j,j+1} \equiv \bigotimes_{j\in 2\mathbb{Z}} \mathcal{U},
 \end{equation}
-which naturally acts from $\mathcal{A}_{2^{-j}}$ to $\mathcal{A}_{2^{-j+1}}$. The schr\"odinger picture version $\mathcal{F}_j^{*}$ of $\mathcal{F}_{j}$ is nothing but a \emph{Kadanoff blocking} of the lattice where we block spins together in pairs, apply some blockwise unitary $U$, and then trace out every second spin. We then define, for all $j, k \in \mathbb{Z}^+$ with $j < k$, the map
+which naturally acts from $\mathcal{A}_{2^{-j}}$ to $\mathcal{A}_{2^{-j+1}}$. The Schr\"odinger picture version $\mathcal{F}_j^{*}$ of $\mathcal{F}_{j}$ is nothing but a \emph{Kadanoff blocking} of the lattice where we block spins together in pairs, apply some blockwise unitary $U$, and then trace out every second spin. We then define, for all $j, k \in \mathbb{Z}^+$ with $j < k$, the map
 \begin{equation}
 	\mathcal{F}_{j,k}\equiv \mathcal{F}_{k-1,k}\circ \mathcal{F}_{k-2,k-1} \circ \cdots \circ \mathcal{F}_{j,j+1}
 \end{equation}
 representing a sequence of $k-j$ Kadanoff blocking operations.
 Using $\mathcal{F}$ we finally introduce an equivalence relation $\sim$ by identifying $M \in \mathcal{A}_{2^{-j}}$ with $\mathcal{F}_{j,k}(M) \in \mathcal{A}_{2^{-k}}$. Thus we build the subspace $N\subset \mathcal{A}_{\text{pre}}$ generated by all differences $M_j - \mathcal{F}_{j,k}(M_j)$, for all $j<k$ and all $M_j\in \mathcal{A}_{2^{-j}}$, and hence define $\mathcal{A}_{\text{reg}} \equiv \mathcal{A}_{\text{pre}}/N$.
-Thus we've arrived at our first ingredient required by the Wilsonian formulation, namely, a space $\mathcal{A}_{\text{reg}}$ of observables containing effects corresponds to experiments with respect to any allowed lattice with a finite yet non-zero spacing. 
+Thus we've arrived at the first ingredient required by the Wilsonian formulation, namely, a space $\mathcal{A}_{\text{reg}}$ of observables containing effects corresponds to experiments with respect to any allowed lattice with a finite yet non-zero spacing. 
 
-We can now describe the space of $\mathcal{S}_{\text{reg}} \equiv \mathcal{S}(\mathcal{A}_{\text{reg}})$ of \emph{regulated field states}. The way to understand a state $\rho$ in this space is as an infinite direct sum $\rho_{\text{reg}} \equiv \bigoplus_{j\in \mathbb{Z}^{+}} \rho_{j}$ of states $\rho_{j} \in \mathcal{S}(\mathcal{A}_{2^{-j}})$, one for each lattice $L_{2^{-j}}$, such that for all $j<k$ the states $\rho_j$ and $\rho_k$ \emph{exactly} satisfy $\rho_j \equiv \mathcal{F}^{*}(\rho_k)$. In words: a regulated field state $\rho_{\text{reg}}$ is a sequence of states which are generated by Kadanoff blockings of each other. A simple example here is $|\Omega\rangle\langle \Omega| \equiv (\rho_j)_{j\in \mathbb{Z}^+}$, where $\rho_j \equiv |\Omega_j\rangle\langle \Omega_j|$ with $|\Omega_j\rangle \equiv \bigotimes_{l\in \mathbb{Z}} |0\rangle$. However there are more complicated states inside $\mathcal{S}_{\text{reg}}$. For example, let $\chi_{[a,b)}:\mathbb{R}\rightarrow\mathbb{R}$ be the simple function
+We can now describe the space of $\mathcal{S}_{\text{reg}} \equiv \mathcal{S}(\mathcal{A}_{\text{reg}})$ of \emph{regulated field states}. The way to understand a state $\rho$ in this space is as an infinite direct sum $\rho_{\text{reg}} \equiv \bigoplus_{j\in \mathbb{Z}^{+}} \rho_{j}$ of states $\rho_{j} \in \mathcal{S}(\mathcal{A}_{2^{-j}})$, one for each lattice $L_{2^{-j}}$, such that for all $j<k$ the states $\rho_j$ and $\rho_k$ \emph{exactly} satisfy $\rho_j \equiv \mathcal{F}^{*}(\rho_k)$. In words: a regulated field state $\rho_{\text{reg}} \equiv \text{diag}(\rho_0, \rho_1, \rho_2, \ldots)$ is nothing but a sequence of states generated by Kadanoff blockings of each other. A simple example here is $\Omega \equiv (\rho_j)_{j\in \mathbb{Z}^+}$, where $\rho_j \equiv |\Omega_j\rangle\langle \Omega_j|$ with $|\Omega_j\rangle \equiv \bigotimes_{l\in \mathbb{Z}} |0\rangle$. However there are more complicated states inside $\mathcal{S}_{\text{reg}}$. For example, let $\chi_{[a,b)}:\mathbb{R}\rightarrow\mathbb{R}$ be the simple function
 \begin{equation}
 	\chi_{[a,b)}(x) = \begin{cases} 1& \quad a\le x < b, \\ 0& \quad \text{otherwise,}\end{cases}
 \end{equation}
@@ -344,22 +352,53 @@ where
 \end{equation}
 One can verify that $|\chi_{[0,1)}\rangle_j\langle \chi_{[0,1)}| = \mathcal{F}_{j,k}^{*}(|\chi_{[0,1)}\rangle_k\langle \chi_{[0,1)}|)$ and thus we obtain a well-defined state $|\chi_{[0,1)}\rangle$ on $\mathcal{A}_{\text{reg}}$.
 
-A plethora of interesting states may be built by exploiting the following \emph{right inverse} CP map $\mathcal{G}^{(*)}$ of $\mathcal{F}^{(*)}$, described in the Schr{\"o}dinger picture by
+A plethora of interesting states may be built by exploiting the following \emph{right inverse} CP map $\mathcal{G}^{*}$ of $\mathcal{F}^{*}$, described in the Schr{\"o}dinger picture by
 \begin{equation}
-	\mathcal{G}_{j+1,j}^{(*)} \equiv \bigotimes_{j\in 2\mathbb{Z}} \mathcal{E}'.
+	\mathcal{G}_{j+1,j}^{*} \equiv \bigotimes_{j\in 2\mathbb{Z}} \mathcal{U}',
 \end{equation}
 where
 \begin{equation}
-	\mathcal{E}'(\rho) \equiv U(\rho\otimes |0\rangle\langle 0|) U^\dag.
+	\mathcal{U}'(\rho) \equiv U(\rho\otimes |0\rangle\langle 0|) U^\dag.
 \end{equation}
-This is only one of an infinite number of possible right inverses of  $\mathcal{F}^{(*)}$; replacing $|0\rangle$ by any other single qubit state in the definition of $\mathcal{E}'$ produces another right inverse.
+There is no unique right inverse for $\mathcal{F}^{*}$. This is because replacing $|0\rangle$ by any other single qubit state in the definition of $\mathcal{U}'$ produces another inequivalent right inverse.
 One can confirm that
 \begin{equation}
-	\mathcal{F}_{j,j+1}^{(*)}\circ \mathcal{G}_{j+1,j}^{(*)} \equiv \mathcal{I}_j.
+	\mathcal{F}_{j,j+1}^{*}\circ \mathcal{G}_{j+1,j}^{*} \equiv \mathcal{I}_j.
 \end{equation}
-We now see that the example presented above, namely $|\chi_{[0,1)}\rangle$, can be constructed by applying $\mathcal{G}_{j+1,j}^{(*)}$ repeatedly to the initial state $|0\rangle_0 \equiv |\chi_{[0,1)}\rangle_0$. Indeed, any state $\rho_0$ on $\mathcal{A}_{2^{-0}}$ can be exploited in the same way to produce a state on $\mathcal{A}_{\text{reg}}$.
+We now see that the example presented above, namely $|\chi_{[0,1)}\rangle$, can be constructed by applying $\mathcal{G}_{j+1,j}^{*}$ repeatedly to the initial state $|\chi_{[0,1)}\rangle_0$. Indeed, any state on $\mathcal{A}_{2^{-0}}$ can be exploited in the same way to produce a state on $\mathcal{A}_{\text{reg}}$.
 
+This example is intended to be indicative of a more general situation: in the more general case of a $D$-dimensional lattice of arbitrary quantum spins we replace the rather specific $\mathcal{F}$ channel build with an arbitrary Kadanoff blocking where $U$ is now allowed to be an arbitrary unitary acting blockwise. 
 
+The second ingredient required by the Wilsonian formulation is the specification of a ``hypothesis state'' 
+$\rho_0$ on $\mathcal{A}_{\text{reg}}$. This state is also dictated by physics: it describes a restriction on the space of states we intend to model to those fluctuations around $\rho_0$. In condensed matter language the hypothesis state describes an initial starting point in some prespecified bulk phase of matter. Quantum field states are good models for systems approach phase transitions: we  use $\rho_0$ to build states approaching quantum phase transitions by the addition of particles/fluctuations. It is too much to hope that we could describe regions of the phase diagram disconnected by phase transitions in terms of $\rho_0$: we would need to replace $\rho_0$ by another representative of a disconnected phase. A key example to have in mind here is that of a topologically trivial phase represented by, say, a product state $\rho_0$, and a topologically nontrivial phase represented by, say, a toric code ground state $\rho_0'$. There is a phase transition separating these two phases. We can model this transition from either side by a quantum field theory, but it is unreasonable to expect that fluctuations around $\rho_0$ will give us a good model for the topological phase $\rho_0'$ across the phase boundary. Technically speaking: $\rho_0$ and $\rho_0'$ belong to unitarily inequivalent representations of $\mathcal{A}_{\text{reg}}$. 
+
+Once we've selected our representative hypothesis state $\rho_0$ we can obtain a hilbert space modelling particles/fluctuations. We do this by exploiting the \emph{GNS representation}, which is another way of saying that we focus only on $\rho_0$ and states related to $\rho_0$ by the addition of at most a finite\footnote{Finite can mean $6.02\times 10^{23}$.} number of particles. The GNS representation proceeds as follows: we introduce the (possibly degenerate or singular) inner product on $\mathcal{A}_{\text{reg}}$ via
+\begin{equation}
+	\langle A|B\rangle \equiv \rho_0 (A^\dag B).
+\end{equation}
+and write
+\begin{equation}
+	N_{0} \equiv \{A\in \mathcal{A}_{\text{reg}}\,|\, \rho_0(A^\dag A)=0\}
+\end{equation}
+for the regulated observables which are \emph{trivial} with respect to $\rho_0$. The idea is now to think of the observables $A\in \mathcal{A}_{\text{reg}}$ themselves as kets $|A\rangle$ in some pre hilbert space. This is not entirely correct: we first need to identify any two observables $A$ and $A' = A + X$ differing by an observable $X\in N_0$. This is achieved by forming the quotient $\mathcal{H} \equiv \mathcal{A}_{\text{reg}}/N_0$; we can now regard $\mathcal{H}$ is a legitimate hilbert space. We think of a ket $|A\rangle$ as the state of the system where a ``particle'' $A$ has been added to the initial state $\rho_0$. The observables $A\in\mathcal{A}_{\text{reg}}$ can now be represented as operators $\pi(A)$ with matrix elements determined by
+\begin{equation}
+	\langle \phi|\pi(A)|\psi\rangle \equiv \rho_0(\phi^\dag A \psi),
+\end{equation}
+with $\phi,\psi \in  \mathcal{A}_{\text{reg}}/N_0$. 
+
+The following little example illustrates this procedure. Suppose we have a qubit $\mathcal{A}\equiv M_2(\mathbb{C}^2)$ in the state $\rho_0 \equiv \left(\begin{smallmatrix}
+p&0\\ 0&1-p
+\end{smallmatrix}\right)$. A short calculation shows that $N_0$ is trivial, and that $\mathcal{H}$ is a four-dimensional space which we can construct by applying $A\otimes \mathbb{I}$ to the entangled state
+\begin{equation}
+	|\Omega\rangle \equiv \sqrt{p}|0\rangle|0\rangle + \sqrt{1-p}|1\rangle|1\rangle,
+\end{equation}
+i.e., 
+\begin{equation}
+	\langle A|B\rangle \equiv \langle\Omega|(A^\dag B) \otimes \mathbb{I}|\Omega\rangle.
+\end{equation}
+Thus, the GNS representation is nothing other than the process of \emph{purification} in quantum information theory.
+
+In our specific example the GNS representation afforded by the product state  $\Omega \equiv (\rho_j)_{j\in \mathbb{Z}^+}$, where $\rho_j \equiv |\Omega_j\rangle\langle \Omega_j|$ with $|\Omega_j\rangle \equiv \bigotimes_{l\in \mathbb{Z}} |0\rangle$, may be understood as follows. 
 
 The next vital ingredient for the Wilsonian formulation is the selection of an operationally motivated distance measure on $\mathcal{A}_{\text{reg}}$. We again employ the Bures metric on $\mathcal{S}(\mathcal{A}_{2^{-j}})$:
 \begin{equation}
@@ -374,11 +413,10 @@ It is a nontrivial question how this metric extends from $\mathcal{S}(\mathcal{A
 The existence of this limit is guaranteed by the fact that $D^2_j(\rho_{1,j},\rho_{2,j})$ is a nonnegative bounded monotone increasing function of $j$, thanks to the fact that the Bures metric is \emph{monotone} and that $\rho_{1,j}$ (respectively, $\rho_{2,j}$) is the image of the CP map $\mathcal{F}_{j,k}^{*}$ applied to $\rho_{1,k}$ (respectively, $\rho_{2,k}$).
 
 
-At this stage, before introducing our final ingredient, we need to produce a representation $\pi$ of the regulated observables $\mathcal{A}_{\text{reg}}$. 
 
-The final ingredient we need for a Wilsonian formulation is the identification of a subset $\mathcal{A}_\sigma$ of observables corresponding to an experiment at some large terrestrial scale $\sigma$. We achieve this by building a ``blurring'' CP map $\mathcal{D}_{\sigma}:\mathcal{A}_{\text{reg}}\rightarrow \mathcal{A}_{\text{reg}}$ and define 
+The final ingredient we need for a Wilsonian formulation is the identification of a subset $\mathcal{A}_\sigma$ of observables corresponding to an experiment at some large terrestrial scale $\sigma$. We achieve this by building a ``blurring'' CP map $\mathcal{E}_{\sigma}:\mathcal{A}_{\text{reg}}\rightarrow \mathcal{A}_{\text{reg}}$ and define 
 \begin{equation}
-	\mathcal{A}_\sigma \equiv \mathcal{D}_{\sigma}(\mathcal{A}_{\text{reg}}).
+	\mathcal{A}_\sigma \equiv \mathcal{E}_{\sigma}(\mathcal{A}_{\text{reg}}).
 \end{equation}
 There is a deal of arbitrariness here in how we define blurring maps; there is no abstract recipe we can appeal to. Instead we again need to do some physics. The following map may be argued to provide a reasonable model for observables accessible at scale $\sigma > 0$: we begin by introducing the Lindblad operator $\mathcal{L}^{(j)}:\mathcal{A}_{2^{-j}} \rightarrow \mathcal{A}_{2^{-j}}$, where
 \begin{equation}
@@ -386,26 +424,26 @@ There is a deal of arbitrariness here in how we define blurring maps; there is n
 \end{equation}
 and $\mathcal{I}$ is the identity superoperator. This Lindblad generator may then be exploited to define the CP map
 \begin{equation}
-	\mathcal{D}_\sigma^{(j)} \equiv e^{(\sigma 2^{j})^2\mathcal{L}^{(j)}}.
+	\mathcal{E}_\sigma^{(j)} \equiv e^{(\sigma 2^{j})^2\mathcal{L}^{(j)}}.
 \end{equation} 
-We set aside, for the moment, the question of the continuity of this operator: a relatively simple argument shows that it acts continuously on operators with finite support -- it is at least strongly continuous with respect to the strong-operator topology generated by the GNS representation afforded by the product state $|\Omega\rangle$). Physically speaking the CP map $\mathcal{D}_{\sigma}$ subjects operators to a diffusion process for a period of ``time'' $\tau = (\sigma 2^{j})^2$: for large times $\tau$ any local operator $A_k$ will evolve to an operator of the form $e^{\tau\mathcal{L}^{(j)}}(A_k) \approx \frac{1}{\sqrt{8\pi \tau}}\sum_l e^{-\frac{(l-k)^2}{8\tau}} A_l$.
+We set aside, for the moment, the question of the continuity of this operator: a relatively simple argument shows that it acts continuously on operators with finite support -- it is at least strongly continuous with respect to the strong-operator topology generated by the GNS representation afforded by the product state $|\Omega\rangle$). Physically speaking the CP map $\mathcal{E}_{\sigma}$ subjects operators to a diffusion process for a period of ``time'' $\tau = (\sigma 2^{j})^2$: for large times $\tau$ any local operator $A_k$ will evolve to an operator of the form $e^{\tau\mathcal{L}^{(j)}}(A_k) \approx \frac{1}{\sqrt{8\pi \tau}}\sum_l e^{-\frac{(l-k)^2}{8\tau}} A_l$.
 
-Because this is a diffusion process we know that a typical operator will have wandered approximately $\sqrt{\tau} = \sigma 2^j$ sites from its initial position. Since the lattice spacing is $2^{-j}$ we see that an operator initially localised at some position will have wandered approximately a physical distance $\sigma$ from its initial position. The diffusion map $\mathcal{D}_\sigma^{(j)}$ can now be used to build a blurring map on $\mathcal{A}_{\text{reg}}$ in the following fashion. Firstly, note that the action of $\mathcal{D}_\sigma^{(j)}$ can be extended in a well-defined way to apply to all of $\mathcal{A}_{\text{reg}}$ exploiting the channels $\mathcal{F}$ and $\mathcal{G}$:
+Because this is a diffusion process we know that a typical operator will have wandered approximately $\sqrt{\tau} = \sigma 2^j$ sites from its initial position. Since the lattice spacing is $2^{-j}$ we see that an operator initially localised at some position will have wandered approximately a physical distance $\sigma$ from its initial position. The diffusion map $\mathcal{E}_\sigma^{(j)}$ can now be used to build a blurring map on $\mathcal{A}_{\text{reg}}$ in the following fashion. Firstly, note that the action of $\mathcal{E}_\sigma^{(j)}$ can be extended in a well-defined way to apply to all of $\mathcal{A}_{\text{reg}}$ exploiting the channels $\mathcal{F}$ and $\mathcal{G}$:
 \begin{equation}
-	\mathcal{D}_\sigma^{(j)}(A_k) = \begin{cases} \mathcal{D}_\sigma^{(j)}\circ\mathcal{F}_{k,j}(A_k), \quad k < j \\
-	\mathcal{F}_{k,j}\circ\mathcal{D}_\sigma^{(j)}\circ\mathcal{G}_{k,j}(A_k), \quad k > j. \end{cases}
+	\mathcal{E}_\sigma^{(j)}(A_k) = \begin{cases} \mathcal{E}_\sigma^{(j)}\circ\mathcal{F}_{k,j}(A_k), \quad k < j \\
+	\mathcal{F}_{k,j}\circ\mathcal{E}_\sigma^{(j)}\circ\mathcal{G}_{k,j}(A_k), \quad k > j. \end{cases}
 \end{equation}
-Using the channel $\mathcal{D}_\sigma^{(j)}$ we arrive at our final definition
+Using the channel $\mathcal{E}_\sigma^{(j)}$ we arrive at our final definition
 \begin{equation}
-	\mathcal{D}_\sigma \equiv \lim_{j\rightarrow \infty} \mathcal{D}_\sigma^{(j)}.
+	\mathcal{E}_\sigma \equiv \lim_{j\rightarrow \infty} \mathcal{E}_\sigma^{(j)}.
 \end{equation}
 Here the limit must be taken with respect to a topology on $\mathcal{A}_{\text{reg}}$; we expect that the limit exists in the strong-operator topology, but it is plausible that it also exists for the norm topology (although, to be honest, we aren't that hopeful...) 
 
-The limiting channel $\mathcal{D}_\sigma$ may be described in words as follows: suppose we have an observable $A_j$ on a lattice with spacing $2^{-j}$. First embed this operator into an equivalent fine-grained observable on the lattice with finer spacing $2^{-k}$ using the channel $\mathcal{F}_{j,k}$. Then subject this fine-grained observable to blurring according to $\mathcal{D}_\sigma^{(k)}$. As $k$ is taken larger and larger the result of this operation will be a sequence $\mathcal{D}_\sigma^{(k)}(A_j)$ of observables in $\mathcal{A}_{\text{reg}}$ on finer and finer lattices. These observables will be better and better approximated by a gaussian weighted mixture of translates of the initial operator. The actual action of this channel is depicted in the following figure. 
+The limiting channel $\mathcal{E}_\sigma$ may be described in words as follows: suppose we have an observable $A_j$ on a lattice with spacing $2^{-j}$. First embed this operator into an equivalent fine-grained observable on the lattice with finer spacing $2^{-k}$ using the channel $\mathcal{F}_{j,k}$. Then subject this fine-grained observable to blurring according to $\mathcal{E}_\sigma^{(k)}$. As $k$ is taken larger and larger the result of this operation will be a sequence $\mathcal{E}_\sigma^{(k)}(A_j)$ of observables in $\mathcal{A}_{\text{reg}}$ on finer and finer lattices. These observables will be better and better approximated by a gaussian weighted mixture of translates of the initial operator. The actual action of this channel is depicted in the following figure. 
 
-Finally, we define the large-scale observables at scale $\sigma$ to be the image of $\mathcal{A}_{\text{reg}}$ under $\mathcal{D}_\sigma$:
+Finally, we define the large-scale observables at scale $\sigma$ to be the image of $\mathcal{A}_{\text{reg}}$ under $\mathcal{E}_\sigma$:
 \begin{equation}
-	\mathcal{A}_\sigma \equiv \mathcal{D}_\sigma(\mathcal{A}_{\text{reg}}).
+	\mathcal{A}_\sigma \equiv \mathcal{E}_\sigma(\mathcal{A}_{\text{reg}}).
 \end{equation}
 
 For the reader dissatisfied with the density of unproven assertions in previous the construction of the large-scale observables we supply here an alternative, presumably equivalent, construction.
