@@ -406,11 +406,19 @@ to produce $|A\rangle \equiv A\otimes\mathbb{I}|\Omega\rangle$, so that
 \end{equation}
 Thus, the GNS representation is nothing other than the process of \emph{purification} in quantum information theory \cite{nielsen_quantum_2000}.
 
-In our specific running example the GNS representation of $\mathcal{A}_{\text{reg}}$ afforded by the product state  $\Omega \equiv (\rho_j)_{j\in \mathbb{Z}^+}$, where $\rho_j \equiv |\Omega_j\rangle\langle \Omega_j|$ with $|\Omega_j\rangle \equiv \bigotimes_{l\in \mathbb{Z}} |0\rangle$, may be understood as follows. Firstly, the state $\mathcal{H}$ in the GNS hilbert space  $|\Omega\rangle$ corresponding to $\rho_0$ is a product state at every scale, i.e., no matter on what lattice spacing you look it is a product state. This is our \emph{vacuum state}. Every other state $|\phi\rangle$ in $\mathcal{H}$ is obtained from $|\Omega\rangle$ by applying an operator to $|\Omega\rangle$; by construction $|\phi\rangle$ is equivalent to a product state at some lattice spacing $a_l = 2^{-l}$ which can only differ from $|0\rangle$ in a finite number of places; it is a superposition 
+In our specific running example the GNS representation of $\mathcal{A}_{\text{reg}}$ afforded by the product state  $\Omega \equiv (\rho_j)_{j\in \mathbb{Z}^+}$, where $\rho_j \equiv |\Omega_j\rangle\langle \Omega_j|$ with $|\Omega_j\rangle \equiv \bigotimes_{l\in \mathbb{Z}} |0\rangle$, may be understood as follows. Firstly, the state $\mathcal{H}$ in the GNS hilbert space  $|\Omega\rangle$ corresponding to $\rho_0$ is a product state at every scale, i.e., no matter on what lattice spacing you look it is a product state. This is our \emph{vacuum state}. Every other state $|\phi\rangle$ in $\mathcal{H}$ is obtained from $|\Omega\rangle$ by applying operators from $\mathcal{A}_{\text{reg}}$ to $|\Omega\rangle$; by construction $|\phi\rangle$ is equivalent to a superposition of product states at some lattice spacing $a_l = 2^{-l}$ which can only differ from $|0\rangle$ in a finite number of places, i.e.,  
 \begin{equation}
 	|\phi\rangle_l = \sum_{n=0}^\infty\sum_{j_1 < j_2 < \ldots< j_n \in \mathbb{Z}} \phi_{j_1,j_2, \ldots, j_n}|j_1,j_2, \ldots, j_n\rangle_l,
 \end{equation} 
-where $|j_1,j_2, \ldots, j_n\rangle_l$ is the infinite product state which is $|0\rangle$ except at locations $j_1, j_2, \ldots, j_n$, where it is a $|1\rangle$ state.
+where $|j_1,j_2, \ldots, j_n\rangle_l$ is the infinite product state which is $|0\rangle$ except at locations $j_1, j_2, \ldots, j_n$, where it is a $|1\rangle$ state. Let's examine the equivalence class of states on $\mathcal{A}_{2^{-j}}$ determined by $|j_1,j_2, \ldots, j_n\rangle_l$: this can be specified using $\mathcal{G}^{*}$: we determine a state $\sigma(j_1,j_2, \ldots, j_n) \equiv (\sigma_k(j_1,j_2, \ldots, j_n))_{k=0}^\infty$ on $\mathcal{A}_{\text{reg}}$ from $|j_1,j_2, \ldots, j_n\rangle_l$ by setting 
+\begin{equation}
+	 \sigma_k(j_1,j_2, \ldots, j_n) = \begin{cases}
+	 	\mathcal{G}^{*}_{k,l}(|j_1,j_2, \ldots, j_n\rangle_l\langle j_1,j_2, \ldots, j_n|), &\quad k>l, \\
+	 	|j_1,j_2, \ldots, j_n\rangle_l\langle j_1,j_2, \ldots, j_n|, &\quad k = l, \\
+	 	\mathcal{F}^{*}_{l,k}(|j_1,j_2, \ldots, j_n\rangle_l\langle j_1,j_2, \ldots, j_n|), &\quad k<l. \\
+	 \end{cases}
+\end{equation} 
+
 
 The next vital ingredient for the Wilsonian formulation is the selection of an operationally motivated distance measure on $\mathcal{A}_{\text{reg}}$. We again employ the Bures metric on $\mathcal{S}(\mathcal{A}_{2^{-j}})$:
 \begin{equation}
