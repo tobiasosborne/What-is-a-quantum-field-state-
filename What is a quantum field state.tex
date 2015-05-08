@@ -410,19 +410,35 @@ In our specific running example the GNS representation of $\mathcal{A}_{\text{re
 \begin{equation}
 	|\phi\rangle_l = \sum_{n=0}^\infty\sum_{j_1 < j_2 < \ldots< j_n \in \mathbb{Z}} \phi_{j_1,j_2, \ldots, j_n}|j_1,j_2, \ldots, j_n\rangle_l,
 \end{equation} 
-where $|j_1,j_2, \ldots, j_n\rangle_l$ is the infinite product state which is $|0\rangle$ except at locations $j_1, j_2, \ldots, j_n$, where it is a $|1\rangle$ state. Let's examine the equivalence class of states on $\mathcal{A}_{2^{-j}}$ determined by $|j_1,j_2, \ldots, j_n\rangle_l$: this can be specified using $\mathcal{G}^{*}$: we determine a state $\sigma(j_1,j_2, \ldots, j_n) \equiv (\sigma_k(j_1,j_2, \ldots, j_n))_{k=0}^\infty$ on $\mathcal{A}_{\text{reg}}$ from $|j_1,j_2, \ldots, j_n\rangle_l$ by setting 
-\begin{equation}
-	 \sigma_k(j_1,j_2, \ldots, j_n) = \begin{cases}
-	 	\mathcal{G}^{*}_{k,l}(|j_1,j_2, \ldots, j_n\rangle_l\langle j_1,j_2, \ldots, j_n|), &\quad k>l, \\
-	 	|j_1,j_2, \ldots, j_n\rangle_l\langle j_1,j_2, \ldots, j_n|, &\quad k = l, \\
-	 	\mathcal{F}^{*}_{l,k}(|j_1,j_2, \ldots, j_n\rangle_l\langle j_1,j_2, \ldots, j_n|), &\quad k<l. \\
-	 \end{cases}
-\end{equation} 
-It turns out that we can identify our Hilbert space $\mathcal{H}$ as a \emph{subspace} of the fock space $\mathfrak{F}_+(\mathcal{K})$ of bosons on the real line whose single-particle wavefunctions\footnote{Here $\mathcal{K}\subset L^2(\mathbb{R}, \mu)$ denotes the vector subspace of $L^2(\mathbb{R}, \mu)$ of \emph{simple functions} spanned by linear combinations of all characteristic functions with dyadic rational endpoints.} are restricted to be characteristic functions of the form $\chi_{[a,b)}(x)$ where $a$ and $b$ are dyadic rational numbers, i.e., numbers of the form $\frac{m}{2^n}$, where $m\in \mathbb{Z}$ and $n\in \mathbb{Z}^{+}$. This representation is furnished by the identification
+where $|j_1,j_2, \ldots, j_n\rangle_l$ is the infinite product state which is $|0\rangle$ except at locations $j_1$, $j_2$, $\ldots,$ $j_n$, where it is a $|1\rangle$ state. 
+%Let's examine the equivalence class of states on $\mathcal{A}_{2^{-j}}$ determined by $|j_1,j_2, \ldots, j_n\rangle_l$: this can be specified using $\mathcal{G}^{*}$: we determine a state $\sigma(j_1,j_2, \ldots, j_n) \equiv (\sigma_k(j_1,j_2, \ldots, j_n))_{k=0}^\infty$ on $\mathcal{A}_{\text{reg}}$ from $|j_1,j_2, \ldots, j_n\rangle_l$ by setting 
+%\begin{equation}
+%	 \sigma_k(j_1,j_2, \ldots, j_n) = \begin{cases}
+%	 	\mathcal{G}^{*}_{k,l}(|j_1,j_2, \ldots, j_n\rangle_l\langle j_1,j_2, \ldots, j_n|), &\quad k>l, \\
+%	 	|j_1,j_2, \ldots, j_n\rangle_l\langle j_1,j_2, \ldots, j_n|, &\quad k = l, \\
+%	 	\mathcal{F}^{*}_{l,k}(|j_1,j_2, \ldots, j_n\rangle_l\langle j_1,j_2, \ldots, j_n|), &\quad k<l. \\
+%	 \end{cases}
+%\end{equation} 
+It turns out that we can canonically identify our Hilbert space $\mathcal{H}$ as a \emph{subspace} of \emph{Fock space} $\mathfrak{F}_+(L^2(\mathbb{R}, \mu))$ of bosons on the real line whose single-particle wavefunctions\footnote{Let $\mathcal{K}\subset L^2(\mathbb{R}, \mu)$ denote the vector subspace of $L^2(\mathbb{R}, \mu)$ of \emph{simple functions} spanned by linear combinations of all characteristic functions with dyadic rational endpoints. Any square-integrable function may be realised as a cauchy sequence of simple functions in $\mathcal{K}$, hence the closure of $\mathcal{K}$ is $L^2(\mathbb{R}, \mu)$.} are restricted to be characteristic functions of the form $\chi_{[a,b)}(x)$ where $a$ and $b$ are dyadic rational numbers, i.e., numbers of the form $\frac{m}{2^n}$, where $m\in \mathbb{Z}$ and $n\in \mathbb{Z}^{+}$. This representation is furnished by the identification
 \begin{equation}
 	 |j_1,j_2, \ldots, j_n\rangle_l \equiv a^\dag\left(\chi_{\left[\frac{j_1}{2^l}, \frac{j_1+1}{2^l}\right)}\right)a^\dag\left(\chi_{\left[\frac{j_2}{2^l}, \frac{j_2+1}{2^l}\right)}\right)\cdots a^\dag\left(\chi_{\left[\frac{j_n}{2^l}, \frac{j_n+1}{2^l}\right)}\right)|\Omega\rangle.
 \end{equation} 
-One can verify that indeed that the inner products between any two vectors in $\mathcal{H}$ and the corresponding pair of vectors in $\mathfrak{F}_+(\mathcal{K})$ are identical so that this is indeed an isomorphism of Hilbert spaces.
+One can verify that indeed that the inner products between any two vectors in $\mathcal{H}$ and the corresponding pair of vectors in $\mathfrak{F}_+(L^2(\mathbb{R}, \mu))$ are identical so that this is indeed an isomorphism of Hilbert spaces. It turns out that the subspace of $\mathfrak{F}_+(L^2(\mathbb{R}, \mu))$ so constructed is actually equal to the whole of $\mathfrak{F}_+(L^2(\mathbb{R}, \mu))$: multiply occupied single-particles states such as 
+\begin{equation}
+	(a^\dag(\chi_{[a,b)}))^m |\Omega\rangle,
+\end{equation}
+appear to be missing from $\mathcal{H}$, however this is an illusion because we can arbitrarily well approximate any such multiply occupied state with states coming from residents of $\mathcal{H}$. Consider, for example,
+\begin{equation}
+	\begin{split}
+		(a^\dag(\chi_{[0,1)}))^2 |\Omega\rangle &= \left(\frac{1}{\sqrt{2^m}}\sum_{j=0}^{2^m -1} a^\dag(\chi_{2^{-m}[j,j+1)}) \right)^2|\Omega\rangle \\
+		&= \frac{1}{{2^m}}\sum_{j\not=k=0}^{2^m -1} a^\dag(\chi_{2^{-m}[j,j+1)})a^\dag(\chi_{2^{-m}[k,k+1)})|\Omega\rangle + |\delta_m\rangle \\
+		&= \frac{1}{{2^m}}\sum_{j\not=k=0}^{2^m -1} a^\dag(\chi_{2^{-m}[j,j+1)})a^\dag(\chi_{2^{-m}[k,k+1)})|\Omega\rangle + O(2^{-m}) \\
+		&\approx \frac{1}{{2^m}}\sum_{j\not=k=0}^{2^m -1} |j,k\rangle_m.
+	\end{split}
+\end{equation}
+This approximation may be made arbitrarily good by taking $m\rightarrow \infty$. In this way we deduce that $\mathcal{H}$ is actually isomorphic to $\mathfrak{F}_+(L^2(\mathbb{R}, \mu))$. Thus the regulated continuum limit in this case is nothing but the space of bosons moving on the real line. 
+
+Even though we've obtained that the kinematics $\mathcal{H}$ for the regulated observables are equivalent to bosons moving on the line we are still not done. Just as for the momentum-space cutoff case, we have that any state in $\mathcal{H}$ has an effective cutoff: any state in $\mathcal{H}$ is well-approximated by a converging sequence of states $|\phi\rangle_l$ at scale $l$. Thus for any state $|\phi\rangle$ there is a cutoff scale $2^l$ such that $|\phi\rangle$ is, for all practical observable purposes, equivalent to the cutoff state $|\phi\rangle_l$. Thus we come to our next ingredient, namely, the specification of a subset $\mathcal{A}_\sigma \subset \mathcal{A}_{\text{reg}}$ of observables corresponding to large-scale experiments at scale $\sigma$. 
 
 The next vital ingredient for the Wilsonian formulation is the selection of an operationally motivated distance measure on $\mathcal{A}_{\text{reg}}$. We again employ the Bures metric on $\mathcal{S}(\mathcal{A}_{2^{-j}})$:
 \begin{equation}
