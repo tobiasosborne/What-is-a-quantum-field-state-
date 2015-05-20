@@ -605,33 +605,31 @@ Finally, we define the large-scale observables at scale $\sigma$ to be the image
 For the reader dissatisfied with the density of unproven assertions in previous the construction of the large-scale observables we supply here an alternative, presumably equivalent, construction.
 
 \section{Quantum field states via completion}\label{sec:qftcompletion}
-Let's tell a story about how physicists on a world far far away might have invented the real numbers $\mathbb{R}$.  The scientists of this world wanted to measure distances using rulers with tick marks spaced at regular intervals. On this world it was agreed that all rulers had to have their ticks spaced by fractions of some standard tick length $a_0$ (the length of the emperor's foot). Thus the tick spacing $\epsilon a_0$ of a ruler was required to be a positive rational ratio $\epsilon \in \mathbb{Q}^+$ of the standard tick length $a_0$. Owing to its canonical nature $a_0$ was set to $1$ by convention. To the scientists of this world all lengths were rational numbers. 
+In this section we finally present a definition for what a quantum field state actually is. Before we do this we'll present a motivating allegory for our definition. 
 
-Now a scientist in possession of a ruler of accuracy $\epsilon$ would deem two lengths $x$ and $y$ differing by $\epsilon$ to be \emph{indistinguishable} (they rounded everything down on this world), i.e., two points $x$ and $y$ were \emph{$\epsilon$ equivalent} if
+Suppose we can only measure distances using rulers with tick marks spaced at regular intervals given by fractions of some standard tick length $a_0$; the tick spacing $\epsilon a_0$ of a ruler is hence a positive rational ratio $\epsilon \in \mathbb{Q}^+$ of $a_0$. Owing to its canonical nature, we may as well set $a_0 = 1$ by convention. Thus all lengths \emph{measured} in terms of rational numbers. 
+
+According to a ruler of accuracy $\epsilon$, two lengths $x$ and $y$ differing by less than $\epsilon$ are \emph{indistinguishable}, i.e., two points $x$ and $y$ are \emph{$\epsilon$ equivalent} if
 \begin{equation}
 	x\sim_\epsilon y \Leftrightarrow |x-y| < \epsilon. 
 \end{equation} 
-For the longest time it was assumed that all lengths had rational values, after all, you could always build a better ruler to measure a length more accurately. 
-
-However, one day it came to pass that a radical, clever, and sadly, unfortunate, scientist on this world made a shocking realisation: there could be a length $x^\star = \sqrt{2}$ which was \emph{not} exactly a rational number! Of course, this poor scientist was summarily executed (there is nothing worse than a smart ass). However, the argument gnawed at the minds of the conservative establishment for decades, and much hot air expended in coming to terms with it. Eventually, the inhabitants of this world came to the following construction. Obviously noone on the planet could measure the length $x_{\epsilon} = n\epsilon$ to be anything other than a multiple $n$ of the ticklength $\epsilon$ found from $n = \lfloor x^\star/\epsilon \rfloor$. However, it could obviously be the case that after the installation of a ruler upgrade to ticklength $\epsilon'$ the newly measured length $x_{\epsilon'} \equiv n'\epsilon$, where $n' = \lfloor x^\star/\epsilon \rfloor$ would \emph{change} as it would be more accurate. Now, supposed the theorists of this world, what if we wanted a specification of a length that would encode the result of a measurement by a ruler with arbitrarily good (but still finite!) ticklength  $\epsilon > 0$ (infinite accuracy was frowned upon)? Well this was obvious: just specify all possible lengths by \emph{sequences} of successively more accurate lengths:
+Even though all lengths are \emph{measured} in terms of rational numbers it turns out that there can be lengths which aren't expressible as a rational number, no matter how accurate the ruler, e.g., the length $x^\star = \sqrt{2}$. Obviously no one in possession of one of the allowed rulers could measure the length $x_{\epsilon} = n\epsilon$ to be anything other than a multiple $n$ of the ticklength $\epsilon$ found from $n = \lfloor x^\star/\epsilon \rfloor$. However, it is the case that after upgrading a ruler to another with ticklength $\epsilon'$ the newly measured length $x_{\epsilon'} \equiv n'\epsilon$, where $n' = \lfloor x^\star/\epsilon \rfloor$ can \emph{change}, because the ruler is more accurate. It is hence desirable to obtain some kind of \emph{specification} of a \emph{physical length} which encodes the results of all possible allowed measurements by rulers with arbitrarily good (but still finite!) ticklengths $\epsilon > 0$. The naive answer is just to use the specification by \emph{sequences} of successively more accurate lengths:
 \begin{equation}
 	(x_n)_{n \in \mathbb{N}}, \quad x_n\in \mathbb{Q}^+.
 \end{equation}
-Now not all sequences were allowed, only those which became more accurate as $n \rightarrow \infty$. That is, only those sequences $(x_\epsilon)_{n \in \mathbb{N}}$ enjoying the property that $\forall \epsilon, \exists N\in \mathbb{N}$ such that $\forall m,n\in \mathbb{N}$
+Now not all sequences can occur, only those which became more accurate as $n \rightarrow \infty$. That is, only those sequences $(x_\epsilon)_{n \in \mathbb{N}}$ enjoying the property that $\forall \epsilon, \exists N\in \mathbb{N}$ such that $\forall m,n\in \mathbb{N}$
 \begin{equation}
 	|x_n-x_m| < \epsilon,
 \end{equation} 
-where considered to correspond to a possible length. It was clear that all the originally accepted lengths $x\in \mathbb{Q}^+$ admitted the representation $(x_n)_{n\in \mathbb{N}}$, with $x_n = x$, so this new definition could accommodate the old one. The space of all these sequences was denoted $\widehat{\mathbb{R}}^+$. However, it was now possible that two apparently different sequences would correspond to the same length. This was solved by introducing the equivalence relation 
+are considered to correspond to a possible physical length. Rational lengths $x\in \mathbb{Q}^+$ have the representation $(x_n)_{n\in \mathbb{N}}$, with $x_n = x$, so this our definition of a physical length can accommodate the old one. The space of all these sequences is denoted $\widehat{\mathbb{R}}^+$. However, it is now possible that two apparently different sequences can correspond to the same length. This is solved by introducing the equivalence relation 
 \begin{equation}
-	(x_n)_{n \in \mathbb{N}} \sim (y_n)_{n \in \mathbb{N}} \Leftrightarrow \text{if $\forall \epsilon$, $\exists N\in \mathbb{N}$ such that $m,n>N$ it was true that $|x_n-y_n| < \epsilon$.} 
+	(x_n)_{n \in \mathbb{N}} \sim (y_n)_{n \in \mathbb{N}} \Leftrightarrow \text{if $\forall \epsilon$, $\exists N\in \mathbb{N}$ such that $m,n>N$ we have $|x_n-y_n| < \epsilon$.} 
 \end{equation}
-Thus, the space of all possible lengths was defined to be $\mathbb{R}^+ \equiv \widehat{\mathbb{R}}^+/\sim$.
-
-The story of how they discovered negative lengths must be told elsewhere...
+Thus, the space of all possible physical lengths is defined to be $\mathbb{R}^+ \equiv \widehat{\mathbb{R}}^+/\sim$.
 
 Of course this fairy tale is just an allegory for the construction of the real numbers by the process of \emph{completion} of the rational numbers, whereby ``continuous'' things (i.e., elements of $\mathbb{R}$) are constructed by sequences of ``not-so-continuous'' things (i.e., the positive ratioanl numbers)
 
-Let's isolate two key features of this allegory. Firstly, we have the space of ``not-so-continuous'' \emph{regularised} objects which specify objects with \emph{finite accuracy}. Secondly, we have a way to talk about the \emph{precision}, by understanding when two objects are effectively \emph{indistinguishable}. We then build the continuous objects as sequences of finite-accuracy objects modulo the equivalence relation that two such sequences represent the same object if they are indistinguishable for all accuracies.
+Let's isolate two key features of this allegory. Firstly, we have the space of ``not-so-continuous'' \emph{regularised} objects which specify objects with \emph{finite accuracy}. Secondly, we have a way to talk about \emph{precision}, by understanding when two objects are effectively \emph{indistinguishable}. We then build the continuous objects as sequences of finite-accuracy objects modulo the equivalence relation that two such sequences represent the same object if they are indistinguishable for all accuracies.
 
 \subsection{What a field state is}
 By analogy with the construction of the rational numbers in the previous section we now describe how to define a \emph{quantum field state}. What we need 
