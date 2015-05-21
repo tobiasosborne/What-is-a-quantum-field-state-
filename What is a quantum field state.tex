@@ -604,7 +604,7 @@ Finally, we define the large-scale observables at scale $\sigma$ to be the image
 
 For the reader dissatisfied with the density of unproven assertions in previous the construction of the large-scale observables we supply here an alternative, presumably equivalent, construction.
 
-\section{Quantum field states via completion}\label{sec:qftcompletion}
+\section{Quantum field states}\label{sec:qftcompletion}
 In this section we finally present a definition for what a quantum field state actually is. Before we do this we'll present a motivating allegory for our definition. 
 
 Suppose we can only measure distances using rulers with tick marks spaced at regular intervals given by fractions of some standard tick length $a_0$; the tick spacing $\epsilon a_0$ of a ruler is hence a positive rational ratio $\epsilon \in \mathbb{Q}^+$ of $a_0$. Owing to its canonical nature, we may as well set $a_0 = 1$ by convention. Thus all lengths \emph{measured} in terms of rational numbers. 
@@ -613,7 +613,7 @@ According to a ruler of accuracy $\epsilon$, two lengths $x$ and $y$ differing b
 \begin{equation}
 	x\sim_\epsilon y \Leftrightarrow |x-y| < \epsilon. 
 \end{equation} 
-Even though all lengths are \emph{measured} in terms of rational numbers it turns out that there can be lengths which aren't expressible as a rational number, no matter how accurate the ruler, e.g., the length $x^\star = \sqrt{2}$. Obviously no one in possession of one of the allowed rulers could measure the length $x_{\epsilon} = n\epsilon$ to be anything other than a multiple $n$ of the ticklength $\epsilon$ found from $n = \lfloor x^\star/\epsilon \rfloor$. However, it is the case that after upgrading a ruler to another with ticklength $\epsilon'$ the newly measured length $x_{\epsilon'} \equiv n'\epsilon$, where $n' = \lfloor x^\star/\epsilon \rfloor$ can \emph{change}, because the ruler is more accurate. It is hence desirable to obtain some kind of \emph{specification} of a \emph{physical length} which encodes the results of all possible allowed measurements by rulers with arbitrarily good (but still finite!) ticklengths $\epsilon > 0$. The naive answer is just to use the specification by \emph{sequences} of successively more accurate lengths:
+Even though all lengths are \emph{measured} in terms of rational numbers it turns out that there can be lengths which aren't expressible as a rational number, no matter how accurate the ruler, e.g., the length $x^\star = \sqrt{2}$. Obviously no one in possession of one of the allowed rulers could measure the length $x_{\epsilon} = n\epsilon$ to be anything other than a multiple $n$ of the ticklength $\epsilon$ found from $n = \lfloor x^\star/\epsilon \rfloor$. However, it is the case that after upgrading a ruler to another with ticklength $\epsilon'$ the newly measured length $x_{\epsilon'} \equiv n'\epsilon$, where $n' = \lfloor x^\star/\epsilon \rfloor$ can \emph{change}, because the ruler is more accurate. It is hence desirable to obtain some kind of \emph{specification} of a \emph{physical length} which encodes the results of all possible allowed measurements by rulers with arbitrarily good (but still finite!) ticklengths $\epsilon > 0$. The naive answer is just to use the specification provided by a \emph{sequence} of successively more accurate lengths:
 \begin{equation}
 	(x_n)_{n \in \mathbb{N}}, \quad x_n\in \mathbb{Q}^+.
 \end{equation}
@@ -629,7 +629,9 @@ Thus, the space of all possible physical lengths is defined to be $\mathbb{R}^+ 
 
 Of course this fairy tale is just an allegory for the construction of the real numbers by the process of \emph{completion} of the rational numbers, whereby ``continuous'' things (i.e., elements of $\mathbb{R}$) are constructed by sequences of ``not-so-continuous'' things (i.e., the positive ratioanl numbers)
 
-Let's isolate two key features of this allegory. Firstly, we have the space of ``not-so-continuous'' \emph{regularised} objects which specify objects with \emph{finite accuracy}. Secondly, we have a way to talk about \emph{precision}, by understanding when two objects are effectively \emph{indistinguishable}. We then build the continuous objects as sequences of finite-accuracy objects modulo the equivalence relation that two such sequences represent the same object if they are indistinguishable for all accuracies.
+Let's isolate some key features of this allegory. Firstly, we have the space of ``not-so-continuous'' \emph{regulated observables}, namely, our rulers with positive rational ticklength. Secondly, we have some kind of reference state relative to which all other states are defined: in our case this is just the length $a_0 = 1$. Thirdly, we have a way to talk about \emph{precision}, or \emph{closeness} allowing us to say when two objects are effectively \emph{indistinguishable}. Finally, we can talk about a subset of the observables corresponding to some scale. These are just the rulers with a ticklength larger than some constant. We then build the continuous objects as sequences of finite-accuracy objects modulo the equivalence relation that two such sequences represent the same object if they are indistinguishable for all accuracies.
+
+Hopefully, with this foreshadowing, our definition of what a quantum field state is should not be too surprising. We hereby propose that a quantum field state is a \emph{sequence} of states $(\rho_n)_{n\in\mathbb{N}}$ of the regulated observables $\mathcal{A}_{\text{reg}}$ that look closer and closer to each other, as measured by observables in $\mathcal{A}_\sigma$, as $n$ grows. 
 
 \subsection{What a field state is}
 By analogy with the construction of the rational numbers in the previous section we now describe how to define a \emph{quantum field state}. What we need 
