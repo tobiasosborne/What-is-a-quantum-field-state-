@@ -705,8 +705,40 @@ To add: finite-size scaling plots.
 
 \bibliography{What-is-a-quantum-field-state}
 
-%\appendix
+\appendix
+\section{Wilson's papers on renormalisation}
+This paper owes a tremendous amount to the singular insight of Wilson. It seems worthwhile to exploit this opportunity to present, in this appendix, a brief exegesis of Wilson's two papers \cite{wilson_renormalization_1974,wilson_renormalization_1975} on the renormalisation group, the $\epsilon$ expansion, critical phenomena, and the Kondo problem. There are several key objectives of this appendix. First and foremost, we want to exactly clarify the relationship between the concepts and formalism presented in this paper to the original sources. Secondly, the language and notation of Wilson's original papers are somewhat unfamiliar to the quantum information theorist, and we hope that by reiterating the key results from Wilson's paper using a quantum notation we might provide an easier way to approach reading these deep and challenging papers. Thirdly, Wilson's presentation is often extremely detailed and intricate as considerable emphasis is placed on concrete calculations with example models. Sometimes this can make it a little hard to see the wood for the trees, especially since important concepts appear interspersed throughout the breadth of these lengthy papers. 
 
+The way we'll proceed is by briefly summarising the content of each of the sections of the original papers, converting, in some cases, the notation to that of this paper, and by reiterating what we feel are the key concepts introduced in each section and how the relate to our implementation. We suppress the calculational details presented in the original works (the best source for this are the original papers anyways).
+
+\subsection{The renormalisation group and the $\epsilon$ expansion}
+In this first of the two key papers on the renormalisation group Wilson and Kogut explain the modern formulation of the renormalisation group in the context of both classical (lattice) systems at criticality and for quantum field theory, and the equivalence of these two scenarios at criticality. The exact renormalisation group is also introduced in this paper. 
+
+
+\subsubsection{Introduction}
+The introduction to this paper includes a brief discussion of several key ideas that play a crucial role throughout the paper. 
+
+First, the central systems of study in the paper are introduced, namely, those comprised of a very large number of degrees of freedom. It is pointed out that in normal circumstances it is possible to enormously reduce the degrees of freedom you need to keep track of in order to explain the physics of such systems. This is done by exploiting the extensive/intensive character of observables: a gas of $1000$ atoms probably has a similar energy density as a gas of $10^{23}$ atoms. This begs the question of how far can you go in using small systems to explain the observables for large systems. Wilson and Kogut point out that the correlation length $\xi$ -- which depends on the system's state -- is the limiting factor here: below the correlation length any finite system will exhibit major deviations when used to predict bulk behaviour.
+
+A small correlation length is the fundamental reason for the success of approximate methods such as mean-field theory (such as Hartree-Fock), perturbation expansions, and the virial expansion, to name a few. These methods all exploit the idea that, away from criticality, \emph{bulk matter properties can be explained by properties of small clusters of atoms}. 
+
+When is the correlation length not small? The answer is a system at or near a phase transition: now there are many degrees of freedom lying within a correlation length. Two fundamental examples include: the classical Ising model and (relativistic) quantum fields. In the case of quantum fields one could say that an infinite number of degrees of freedom lie within a correlation length, one per location $x$ in spacetime.
+
+
+\subsubsection{Elementary properties of systems near their critical temperature, ...}
+\subsubsection{The gaussian model}
+\subsubsection{The $s^4$ model}
+\subsubsection{The $s^4$ model continued}
+\subsubsection{The approximate recursion formula}
+\subsubsection{More results from the approximate recursion formula}
+\subsubsection{Feynman graph calculation of critical exponents}
+\subsubsection{Dimension of tensor operators in $4-\epsilon$ dimensional space-time}
+\subsubsection{Connection between statistical mechanics and field theory}
+\subsubsection{Exact renormalisation group equations in differential form}
+\subsubsection{Topology of the renormalisation group, ...}
+\subsubsection{The search for a nontrivial fixed point of $\phi^4$ field theory in $4$ dimensions}
+\subsubsection{Concluding remarks}
+\subsubsection{Appendix: simple solutions of the exact renormalisation group equations}
 
 \end{document}  
 
