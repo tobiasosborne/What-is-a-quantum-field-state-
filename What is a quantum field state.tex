@@ -670,9 +670,16 @@ where
 \begin{equation}
 	\widehat{\phi}(\mathbf{x}) = \int \frac{d^3 {k}}{(2\pi)^{3}} e^{-i\mathbf{k}\cdot \mathbf{x}} \widehat{\phi}(\mathbf{k}).
 \end{equation}
-In principle it ought to be possible to make sense of this cutoff hamiltonian because the divergences responsible for the difficulties in defining $\widehat{H}_{\phi^4}$ are due to to the infinite number of high-frequency modes, which have now been removed. In practice, however, the object $\widehat{H}_{\phi^4}(\Lambda)$ is extremely hard to work with as it is still an interacting model for a many particle quantum system, a thing which is, in general, deeply nontrivial to work with.
+In principle it ought to be possible to make sense of this cutoff hamiltonian because the divergences responsible for the difficulties in defining $\widehat{H}_{\phi^4}$ are due to the infinite number of high-frequency modes, which have now been removed. In practice, however, the object $\widehat{H}_{\phi^4}(\Lambda)$ is extremely hard to work with as it is still an interacting model for a many particle quantum system, a thing which is, in general, deeply nontrivial to work with.
 
-In order to proceed we'll take our first truly nonrigourous step and exploit perturbation theory to calculate physical quantities.
+In order to proceed we'll take our first truly nonrigourous step and exploit perturbation theory to calculate physical quantities. We imagine that the quartic term 
+\begin{equation}
+	\widehat{H}_{\text{int}}(\Lambda) \equiv  \frac{\lambda}{4!}\int_{|\mathbf{k}_1| \le \Lambda} \frac{d^3 {k}_1}{(2\pi)^3}\int_{|\mathbf{k}_2| \le \Lambda} \frac{d^3 {k}_2}{(2\pi)^3}\int_{|\mathbf{k}_3| \le \Lambda} \frac{d^3 {k}_3}{(2\pi)^3}\, \widehat{\phi}(\mathbf{k}_1)\widehat{\phi}(\mathbf{k}_2)\widehat{\phi}(\mathbf{k}_3)\widehat{\phi}^\dag(\mathbf{k}_1+\mathbf{k}_2+\mathbf{k}_3)
+\end{equation}
+is a perturbation\footnote{This is \emph{not} correct! The quartic term is an unbounded operator, even after applying the cutoff.} and expand the ground state in powers of $\lambda$, i.e., we build the approximation
+\begin{equation}
+	|\Omega(m,\lambda,\Lambda)\rangle \equiv |\Omega(m,\lambda)\rangle - \frac{\mathbb{I}}{\widehat{H}_0-E_0} \widehat{H}_{\text{int}}(\Lambda)|\Omega(m,\lambda)\rangle + \cdots
+\end{equation}
 
 Recall that our large-scale observables at scale $\sigma$ are determined in the Heisenberg picture by a CP map $\mathcal{E}_\sigma$ which acts by embedding or ``spreading out'' the observables across the UV degrees of freedom. In the Schr\"odinger picture this CP acts dually as $\mathcal{E}_\sigma^*$ where it is a \emph{coarse graining} map that essentially acts as a partial trace. Indeed, in the case of the hard momentum cutoff it is precisely a partial trace over the large momentum degrees of freedom.  Now, suppose we have some reduced density operator $\rho_\sigma$ from which we'd like to build a Cauchy sequence, i.e., from which we'd like to remove the UV regulator. To do this we need to ``put back in'' the state on the degrees of freedom between $\sigma$ and a UV cutoff $\Lambda$ in a way that would be consistent for all $\sigma < \Lambda$. This is the same as looking for a sequence $(\rho_{\Lambda_n})_{n=1}^\infty$ of states with the property that
 \begin{equation}
