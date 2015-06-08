@@ -84,8 +84,9 @@ We've structured this paper as follows. We begin in \S\ref{sec:opqp} with a shor
 
 A final note: in preparing these notes we had in mind a list of questions that any putatitive field theory formulation should answer. This list includes
 \begin{enumerate}
-	\item What is a continuum limit actually, and how do we compare between the continuum and the discretuum?
-	\item ...
+	\item What is a continuum limit actually, as a mathematical structure?
+	\item How do we compare between the continuum and the discretuum?
+	\item How do we take the continuum limit of states represented as tensor networks rather than path integrals in a way consistent with lagrangian/hamiltonian approach?
 \end{enumerate}
 Our presentation differs markedly from standard texts: we make use of some quantum information technology unfamiliar in high energy physics, including, density operators, information metrics, and completely positive maps. We include in the next section a brief summary of the relevant prequisites. This insistance on using tools from operational quantum mechancs pays some dividends in the sequel: we are able to build a ``partial integration'' procedure with an operational interpretation and, in linearising around a fixed point, we can identify relevant and irrelevant operators which are hermitian.
 
@@ -318,28 +319,28 @@ The core (and rather ambitious) objective of these notes is to come up with a de
 Casting an eye over the discussion in the previous section we isolate four core ingredients:
 \begin{enumerate}
 	\item A space of observables $\mathcal{A}_{\text{reg}}$ for \emph{regulated} theories which are mathematically well behaved. The space $\mathcal{A}_{\text{reg}}$ should be naturally parametrised by one or more \emph{cutoffs}\footnote{It turns out that when you have more general cutoffs, e.g., by arbitrary nonregular spatial discretisations, then the additional structure you need is a \emph{partial order} on the space of cutoffs; this is usually canonical and we only discuss this problem in the context of two examples.} $\Lambda$, so that we can identify in $\mathcal{A}_{\text{reg}}$ the subspace $\mathcal{A}_{\Lambda}$ of theories with cutoff $\Lambda$. There is a great deal of arbitrariness here and we only pursue the details for two examples, namely, the momentum-space and real-space cutoffs.
-	\item A state $\rho_0$ on the space of regulated observables. This specification allows us to restrict our attention to studying fluctuations around a given hypothesis for the vacuum of the effective theory. You should think of $\rho_0$ as being a representative of a given phase of matter. Technically it allows us to build a representation of our observables as operators on a Hilbert space.  
-	\item A way to \emph{compare} the predictions of two theories with \emph{different} cutoffs -- an \emph{information distnace measure}. We do this by agreeing on an operationally motivated distance measure on the \emph{state spaces} $\mathcal{S}_\Lambda$ of the $\mathcal{A}_\Lambda$'s, and then extending this to the state space $\mathcal{S}_{\text{reg}}$ of \emph{all} regulated states on $\mathcal{A}_{\text{reg}}$.
+	\item A state $\rho_0$ on the space of regulated observables. This specification allows us to restrict our attention to studying fluctuations around a given hypothesis for the vacuum of the effective theory. You should think of $\rho_0$ as being a representative of a given phase of matter. In the standard Wilson setup the state $\rho_0$ is usually taken to be a \emph{fixed point} of the renormalisation group -- more on this later. Technically the reference state allows us to build a representation of our observables as operators on a Hilbert space.  
 	\item A definition for ``large-scale'' observables. This is done by specifying a \emph{completely positive map} $\mathcal{E}_\sigma : \mathcal{A}_{\text{reg}} \rightarrow \mathcal{A}_{\text{reg}}$, parametrised by one or more \emph{resolution} or \emph{scale parameters} $\sigma$, whose image is the convex set of all those effects measurable by large-scale observers (i.e., those measurement that we mere mortals can perform). It is only with respect to these observables that we actually compare two quantum field states.
+	\item A way to \emph{compare} the predictions of two theories with \emph{different} cutoffs -- an \emph{information distnace measure}. We do this by agreeing on an operationally motivated distance measure on the \emph{state spaces} $\mathcal{S}_\Lambda$ of the $\mathcal{A}_\Lambda$'s, and then extending this to the state space $\mathcal{S}_{\text{reg}}$ of \emph{all} regulated states on $\mathcal{A}_{\text{reg}}$.
 \end{enumerate}  
 As we argue below, once we've specified this ``minimal data'' we can exploit the Wilsonian view to define what is meant by a quantum field state. It is worth noting that it is possible, in some cases, to avoid specifying all four objects above and still end up with a meaningful notion of a quantum field state.
 
 To concretely illustrate the components of the Wilsonian formulation we'll specifically refer to two important examples. The first example is a standard choice in QFT, namely that of the (hard or smooth) momentum cutoff. We briefly sketch the data required for the Wilsonian formulation in this case and connect it with the traditional description of perturbative interacting QFT by specifying a ``zooming-out'' CP map. The second example we consider, namely, the real-space cutoff requires a little more care to put it into a form appropriate for the Wilsonian formulation: here we encounter additional problems because we need to compare lattices with different lattice spacings. We show how Kadanoff blocking supplies us with a solution by supplying us with a ``zooming-out'' CP map describing the large-scale observables. 
 
 \subsection{The momentum cutoff}
-In this subsection we introduce the standard momentum cutoff and heuristically describe how it fits into the framework we sketched above. We focus on the simplest example, namely, a single scalar quantum field, although everything we write here applies immediately to fermion fields as well. Whether we can exploit a momentum cutoff to make sense of gauge fields and sigma models is far less clear; this is a topic for a more in-depth study.  
+In this subsection we introduce the standard momentum cutoff and heuristically describe how it fits into the framework we sketched above. We focus on the simplest example, namely, a single scalar quantum field, although everything we write here applies immediately to fermion fields as well. Whether we can exploit a momentum cutoff to make sense of gauge fields and sigma models is far less clear; this is a topic for a more in-depth study. This subsection is likely to be unfamiliar and more challenging for the quantum information theorist, who is recommended to look at the next subsection on the real-space cutoff first. 
 
-The first step in building our quantum field state is to construct a space $\mathcal{A}_{\text{reg}}$ of observables for regulated theories parametrised by a cutoff $\Lambda$. We work in $(d+1)$ dimensions and parametrise our single-particle states in momentum space via the variable $k\in\mathbb{R}^d$; we are going to build a space of observables from the many particle space arising from (a subspace of) the complex Hilbert space $\mathfrak{h} \equiv L^2(\mathbb{R}^d)$. This construction is reasonably standard, and we content ourselves with a summary (see, e.g., \cite{bratteli_operator_1997} for further details). 
+The first step in building our quantum field state is to construct a space $\mathcal{A}_{\text{reg}}$ of observables for regulated theories parametrised by a cutoff $\Lambda$. We work in $(d+1)$ dimensions and parametrise our single-particle states in momentum space via the variable $k\in\mathbb{R}^d$; we are going to build a space of observables from the many particle space arising from (a subspace of) the complex Hilbert space $\mathfrak{h} \equiv L^2(\mathbb{R}^d)$. Wavefunctions from $\mathfrak{h}$ are expressed in \emph{momentum space}. This construction is reasonably standard, and we content ourselves with a summary (see, e.g., \cite{bratteli_operator_1997} for further details). 
 
-The \emph{canonical commutation relation} (CCR) algebra $\text{CCR}(\mathfrak{h})$ for $\mathfrak{h}$ is generated by \emph{annihilation} and \emph{creation} operators $a(f)$ and $a^\dag(f)$, with $f\in\mathfrak{h}$, which obey
+The \emph{canonical commutation relation} (CCR) algebra $\text{CCR}(\mathfrak{h})$ for $\mathfrak{h}$ is generated by the momentum-space \emph{annihilation} and \emph{creation} operators $a(f)$ and $a^\dag(f)$, with $f\in\mathfrak{h}$, which obey
 \begin{equation}
 	[a(f), a(g)] = 0 = [a^\dag(f), a^\dag(g)], \quad \text{and}\quad [a(f), a^\dag(g)] = (f,g)\mathbb{I},
 \end{equation}
-where $f, g\in \mathfrak{h}$ and $(\cdot, \cdot)$ is the inner product on $\mathfrak{h}$. Let $f\in \mathfrak{h}$: using $a(f)$ and $a^\dag(f)$ we build the \emph{smeared field operators}
+where $f, g\in \mathfrak{h}$ and $(\cdot, \cdot)$ is the inner product on $\mathfrak{h}$. Let $f\in \mathfrak{h}$: using $a(f)$ and $a^\dag(f)$ we build the \emph{smeared momentum field operators}
 \begin{equation}
 	\widehat{\varphi}(f) \equiv \frac{1}{\sqrt2}(a(f) + a^\dag(f)), \quad \text{and} \quad \widehat{\pi}(f) \equiv \frac{-i}{\sqrt2}(a(f) - a^\dag(f)).
 \end{equation}
-Note that $\widehat{\varphi}(f)$ so defined is not quite the same as the field operator $\widehat{\phi}(f)$ familiar from textbook discussions of the scalar field: the difference is that $f$ is allowed to be \emph{complex} in our definition. We recover the standard field operators $\widehat{\phi}(f) = \widehat{\varphi}(f)$ and $\widehat{\pi}(f) = \widehat{\varphi}(if)$, when $f$ is real. These, in turn, may be used to build the \emph{Weyl}, or \emph{displacement}, operator
+Note that $\widehat{\varphi}(f)$ so defined is not quite the same as the smeared momentum-space field operator $\widehat{\phi}(f)$ familiar from textbook discussions of the scalar field: the difference is that $f$ is allowed to be \emph{complex} in our definition. We recover the standard smeared momentum-space field operators $\widehat{\phi}(f) = \widehat{\varphi}(f)$ and $\widehat{\pi}(f) = \widehat{\varphi}(if)$, when $f$ is real. These, in turn, may be used to build the \emph{Weyl}, or \emph{displacement}, operator
 \begin{equation}
 	W(f) \equiv e^{i\widehat{\varphi}(f)}.
 \end{equation}
@@ -353,19 +354,38 @@ Now that we've defined a space of regulated observables we need to pick a state 
 \begin{equation}
 	\widehat{H}_{\text{KG}} = \frac12\int d^3 {x}\, \left(\widehat{\pi}^2(\mathbf{x}) + (\nabla \widehat{\phi}(\mathbf{x}))^2 + m^2 \widehat{\phi}^2(\mathbf{x})\right).
 \end{equation}
-This model is written in terms of the field operators $\widehat{\phi}(\mathbf{x})$ and $\widehat{\pi}(\mathbf{x})$ which we haven't defined yet (such operators are not in $\mathcal{A}_{\text{reg}}$)! We are going to sidestep around this issue by just using $\widehat{H}_{\text{KG}}$ simply as a proxy for a state $\rho_0 \equiv |\Omega\rangle\langle \Omega|$ on $\mathcal{A}_{\text{reg}}$, and forget that we ever needed the as-yet poorly defined field operators at the point $\mathbf{x}$. The state we are going to build will be \emph{quasi-free}, or \emph{gaussian}, meaning that it is completely determined by its two-point functions or covariance matrix. Thus it sufficient to restrict our attention to the expectation values of the Weyl operators 
+This model is usually written in terms of the \emph{real-space} ``field operators'' $\widehat{\phi}(\mathbf{x})$ and $\widehat{\pi}(\mathbf{x})$ which we haven't defined yet (they are not in $\mathcal{A}_{\text{reg}}$)! We are going to sidestep around this issue by just using $\widehat{H}_{\text{KG}}$ simply as a proxy for a state $\rho_0 \equiv |\Omega\rangle\langle \Omega|$ on $\mathcal{A}_{\text{reg}}$, and forget that we ever needed the as-yet poorly defined field operators at the point $\mathbf{x}$. The state we are going to build will be \emph{quasi-free}, or \emph{gaussian}, meaning that it is completely determined by its two-point functions or covariance matrix. It is sufficient to restrict our attention to the expectation values of the Weyl operators 
 \begin{equation}\label{eq:charfun}
-	\rho_0(W(f)) = \langle \Omega|W(f)|\Omega\rangle.
+	\rho_0(W(f)) = \langle \Omega|W(f)|\Omega\rangle
 \end{equation}
-A lengthy calculation shows (check!) that this is given by
+because all other expectation values can be determined by differentiating the above expression with respect to $f$, e.g., 
+\begin{equation}\label{eq:charfun}
+	\rho_0(\widehat{\varphi}(f)\widehat{\varphi}(g)) = -\frac{d}{dt}\frac{d}{du}\rho_0(W(tf+ug))\bigg|_{t=u=0}.
+\end{equation}
+
+A lengthy calculation shows that, for the Klein-Gordon model, the characteristic function is given by
 \begin{equation}
-	\rho_0(W(f)) = \exp\left(-\frac{1}{2}\int \frac{1}{\sqrt{|\mathbf{k}|^2 + m^2}}|\widehat{f}_r(\mathbf{k})|^2 + \sqrt{|\mathbf{k}|^2 + m^2}|\widehat{f}_i(\mathbf{k})|^2 \,\frac{d^3k}{(2\pi)^3} \right),
+	\rho_0(W(f)) = \exp\left(-\frac{1}{2}\int \frac{1}{\sqrt{|\mathbf{k}|^2 + m^2}}|\re{f}(\mathbf{k})|^2 + \sqrt{|\mathbf{k}|^2 + m^2}|\im{f}(\mathbf{k})|^2 \,\frac{d^3k}{(2\pi)^3} \right).
 \end{equation}
-where $\widehat{f}(\mathbf{k}) \equiv \int e^{i\mathbf{k}\cdot \mathbf{x}} f(\mathbf{x})\, d^3x$ and $\widehat{f_r}$ and $\widehat{f_i}$ are respectively the real and imaginary parts of $\widehat{f}$.
-%$\widehat{f} = \widehat{f}_r+ i \widehat{f}_i$. 
 That the characteristic function (\ref{eq:charfun}) contains all the information we need is a consequence of the observation that we can differentiate the Weyl operators to obtain products of smeared field operators.
 
-The next ingredient we need for the Wilsonian formulation is a distance measure between two states; we employ the \emph{Bures metric}
+While the original Klein-Gordon hamiltonian is not naively well-defined, the characteristic function \emph{does} determine a well-defined state on $\mathcal{A}_{\text{reg}}$; while it turns out that there are no mathematical obstructions in working with the hamiltonian, it is extremely convenient to use the hamiltonian as a heuristic to guess good states and to work from them as a starting point.
+
+The next ingredient we require for the Wilsonian formulation is a definition for the \emph{large-scale} observables available to experimentalists at lengthscale $\sigma > 0$. These are selected by a CP map $\mathcal{E}_\sigma$ modelling the combined effects of decoherence and the imprecisions of realistic detectors. This is a complex subject which certainly deserves a lengthy detailed treatment. Here we'll just content ourselves with a caricature of the actual CP map $\mathcal{E}_\sigma$ modelling these effects given by \emph{gaussian smearing}. This is the following gaussian CP map determined by its action 
+\begin{equation}
+	\mathcal{E}_\sigma(W(f)) \equiv e^{i\widehat{\varphi}(X(f))}e^{-\frac12(f,Yf)},
+\end{equation}
+on the Weyl operators, where
+\begin{equation}
+	X(f) \equiv g_\sigma\star f \equiv (g_\sigma \star \re f) + i (g_\sigma \star \im f),
+\end{equation}
+the $\star$ denotes convolution, $g_\sigma(x) = e^{-\frac{x^2}{\sigma^2}}/\sqrt{\pi}\sigma$, and $Y \equiv y \mathbb{I}$, $\re{y}\im{y}> 1$. With this CP map in hand we henceforth define the positive cone of effects available to us at scale $\sigma$ to be
+\begin{equation}
+	\mathcal{A}_\sigma^+ \equiv \mathcal{E}_\sigma (\mathcal{A}_{\text{reg}}^+).
+\end{equation}
+
+
+The final ingredient we need for the Wilsonian formulation is a distance measure between two states; we employ the \emph{Bures metric}
 \begin{equation}
 	D^2(\rho_1,\rho_2) \equiv 2\left(1-\tr\left(\sqrt{\sqrt{\rho_1}\rho_2\sqrt{\rho_1}}\right)\right).
 \end{equation} 
@@ -375,18 +395,6 @@ for this purpose. This metric can be (somewhat tediously) evaluated \cite{marian
 \end{equation}
 where $\langle X, Y\rangle_{\rho} \equiv \tr(X\Omega_\rho^{-1}(Y))$, with $\Omega_\rho(X) \equiv \frac12 (\rho X + X \rho)$.
 
-The final ingredient we require for the Wilsonian formulation is a definition for the \emph{large-scale} observables available to experimentalists at lengthscale $\sigma > 0$. These are selected by a CP map $\mathcal{E}_\sigma$ modelling the combined effects of decoherence and the imprecisions of realistic detectors. This is a complex subject which certainly deserves a lengthy detailed treatment. Here we'll just content ourselves with a caricature of the actual CP map $\mathcal{E}_\sigma$ modelling these effects given by \emph{gaussian smearing}. This is the following gaussian CP map determined by its action 
-\begin{equation}
-	\mathcal{E}_\sigma(W(f)) \equiv e^{i\widehat{\varphi}(X(f))}e^{-\frac12(f,Yf)},
-\end{equation}
-on the Weyl operators, where
-\begin{equation}
-	X(f) \equiv g_\sigma\star f \equiv (g_\sigma \star f_r) + i (g_\sigma \star f_i),
-\end{equation}
-the $\star$ denotes convolution, $g_\sigma(x) = e^{-\frac{x^2}{\sigma^2}}/\sqrt{\pi}\sigma$, and $Y \equiv y \mathbb{I}$, $\re{y}\im{y}> 1$. With this CP map in hand we henceforth define 
-\begin{equation}
-	\mathcal{A}_\sigma \equiv \mathcal{E}_\sigma (\mathcal{A}_{\text{reg}}).
-\end{equation}
 
 Let's now assemble the data required for the Wilsonian formulation for the momentum cutoff case here:
 \begin{enumerate}
@@ -395,26 +403,26 @@ Let's now assemble the data required for the Wilsonian formulation for the momen
 	\begin{equation*}
 		\rho_0(W(f)) = \exp\left(-\frac{1}{2}\int \frac{1}{\sqrt{|\mathbf{k}|^2 + m^2}}|\widehat{f}_r(\mathbf{k})|^2 + \sqrt{|\mathbf{k}|^2 + m^2}|\widehat{f}_i(\mathbf{k})|^2 \,\frac{d^3k}{(2\pi)^3} \right).
 	\end{equation*}
+	\item The \emph{large-scale observables at scale $\sigma$} are of the form
+	\begin{equation*}
+		M_\sigma \equiv \mathcal{E}_\sigma(M), \quad M\in \mathcal{A}_{\text{reg}}^+.	
+	\end{equation*}
 	\item We employ the \emph{Bures metric} 
 	\begin{equation*}
 		D^2(\rho_1,\rho_2) \equiv 2\left(1-\tr\left(\sqrt{\sqrt{\rho_1}\rho_2\sqrt{\rho_1}}\right)\right)
 	\end{equation*}
 	as our distance measure.
-	\item The \emph{large-scale observables at scale $\sigma$} are of the form
-	\begin{equation*}
-		M_\sigma \equiv \mathcal{E}_\sigma(M), \quad M\in \mathcal{A}_{\text{reg}}.	
-	\end{equation*}
 \end{enumerate}
 
 
 \subsection{The real-space cutoff}
-The real-space cutoff is implemented by putting the system on a lattice with (variable) lattice spacing $a$. In discussing the real-space cutoff case we encounter an additional problem which we did not (directly) have to engage with in the momentum cutoff case, namely, how do we compare two systems with different lattice spacing? 
+The real-space cutoff is implemented by putting the system on a lattice with (variable) lattice spacing $a$. In discussing the real-space cutoff case we encounter an additional problem which we did not (directly) have to engage with in the momentum cutoff case, namely, how do we compare two systems with \emph{different} lattice spacings? 
 
 We begin by building the space of observables for a one-dimensional system with a \emph{fixed} real-space cutoff, i.e., a lattice $L_a$ with spacing $a$: 
 \begin{center}
 	\includegraphics{lattice.pdf}
 \end{center}
-This is a regular partition of the real line $\mathbb{R}$ by a collection of lattice cells of the form $I_j \equiv [ja, (j+1)a)$, i.e., $L_a \equiv \{I_j\}_{j\in \mathbb{Z}}$. For concreteness we focus on the example a system where we associate a quantum spin-$1/2$ degree of freedom (i.e., a qubit) with each lattice \emph{cell}\footnote{We associate degrees of freedom with cells rather than vertices as we (usually) regard them as representing the averaged value of some physical quantity, e.g., angular momentum, over the cell.}, or \emph{link}, $I_j$. The Hilbert space for such a system would naively be the infinite tensor product of $\mathbb{C}^2$, one for each lattice cell. However, we avoid the discussion of how to make sense of this for the moment and instead describe the arguably more natural space of observables for this system. This space is built as follows: for any finite subset $\Lambda \subset L_a$ of lattice cells let $\mathcal{A}(\Lambda)$ be the tensor product of $M_2(\mathbb{C})$ over each $I_j\in \Lambda$. For $\Lambda_1\subset \Lambda_2$ we identify $\mathcal{A}(\Lambda_1)$ in a natural way with $\mathcal{A}(\Lambda_1)\otimes \mathbb{I}_{\Lambda_2\setminus \Lambda_1} \subset \mathcal{A}(\Lambda_2)$. For infinite $\Lambda \subset L_a$ denote by $\mathcal{A}(\Lambda)$ the $C^*$-closure of the increasing family of finite-dimensional algebras $\mathcal{A}(\Lambda_f)$ with $\Lambda_f \subset \Lambda$. What this means in words is that $\mathcal{A}(\Lambda)$ contains all observables which act on at most a finite number of spins as well as observables which are \emph{well approximated} by sequences of observables acting on at most a finite number of spins. The \emph{quasi-local algebra} is then $\mathcal{A}(L_a)$, and this is the space of observables we associate with our regulated system. 
+This is a regular partition of the real line $\mathbb{R}$ by a collection of lattice cells of the form $I_j \equiv [ja, (j+1)a)$, i.e., $L_a \equiv \{I_j\}_{j\in \mathbb{Z}}$. For concreteness we focus on the example of a system where we associate a quantum spin-$1/2$ degree of freedom (i.e., a qubit) with each lattice \emph{cell}\footnote{We associate degrees of freedom with cells rather than vertices as we (usually) regard them as representing the averaged value of some physical quantity, e.g., angular momentum, over the cell.}, or \emph{link}, $I_j$. The Hilbert space for such a system would naively be the infinite tensor product of $\mathbb{C}^2$, one for each lattice cell. However, we avoid the discussion of how to make sense of this for the moment and instead describe the arguably more natural space of observables for this system. This space is built as follows: for any finite subset $\Lambda \subset L_a$ of lattice cells let $\mathcal{A}(\Lambda)$ be the tensor product of $M_2(\mathbb{C})$ over each $I_j\in \Lambda$. For $\Lambda_1\subset \Lambda_2$ we identify $\mathcal{A}(\Lambda_1)$ in a natural way with $\mathcal{A}(\Lambda_1)\otimes \mathbb{I}_{\Lambda_2\setminus \Lambda_1} \subset \mathcal{A}(\Lambda_2)$. For infinite $\Lambda \subset L_a$ denote by $\mathcal{A}(\Lambda)$ the $C^*$-closure of the increasing family of finite-dimensional algebras $\mathcal{A}(\Lambda_f)$ with $\Lambda_f \subset \Lambda$. What this means in words is that $\mathcal{A}(\Lambda)$ contains all observables which act on at most a finite number of spins as well as observables which are \emph{well approximated} by sequences of observables acting on at most a finite number of spins. The \emph{quasi-local algebra} is then $\mathcal{A}(L_a)$, and this is the space of observables we associate with our regulated system. 
 
 To get a feel for what kinds of observables live in $\mathcal{A}(L_a)$ we consider a couple of examples. The simplest is a \emph{single-site operator}, e.g., $\sigma^z_j$ (we adopt the simpler subscript notation $A_j \equiv A_{I_j}$ for an operator acting nontrivially only on lattice cell $I_j$). An example of an observable well-approximated by a sequence of finite-support operators is $\sum_{j\ge 0} e^{-j}\sigma^z_0 \sigma_1^z  \cdots \sigma_{j-1}^z\sigma_j^z$. An important class of observables that \emph{do not} live in $\mathcal{A}(L_a)$ are the ``mean field''-type observables, e.g., $M_z \text{``$\equiv$''} \lim_{n\rightarrow\infty}\frac{1}{n}\sum_{j = 0}^{n-1} \sigma^z_j$ (here the scare quotes indicate that the limiting object doesn't make sense). Another type of observable that doesn't live in $\mathcal{A}(L_a)$ are given by the finite-rank projections $P$  and most spectral projections for bulk observables like $M_z$. This ``deficit'' of the observable set $\mathcal{A}(L_a)$ can be corrected by passing to a von Neumann algebra, however this requires the introduction of a reference state, a step we don't yet wish to take. 
 
@@ -501,10 +509,13 @@ One can confirm that
 \end{equation}
 We now see that the example presented above, namely $\omega(\chi_{[a,b)})$, can be constructed by applying $\mathcal{G}_{j+1,j}^{*}$ repeatedly to the initial state $|\chi_{[0,1)}\rangle_0$. Indeed, any state on $\mathcal{A}_{2^{-0}}$ can be exploited in the same way to produce a state on $\mathcal{A}_{\text{reg}}$.
 
-This example is intended to be indicative of a much more general situation: let $L_a$ be a $D$-dimensional lattice of arbitrary quantum spins we replace the rather specific $\mathcal{F}$ channel built with an arbitrary Kadanoff blocking where $\mathcal{U}$ is now allowed to be an \emph{arbitrary} blockwise unitary. Then, just as above, we can construct $\mathcal{F}$, and hence another $\mathcal{A}_{\text{reg}}$.
+This example is intended to be indicative of a much more general situation: let $L_a$ be a $D$-dimensional lattice of arbitrary quantum spins we replace the rather specific $\mathcal{F}$ channel built with an arbitrary Kadanoff blocking where $\mathcal{U}$ is now allowed to be an \emph{arbitrary} blockwise unitary (or, more generally, just a CP map). Then, just as above, we can construct $\mathcal{F}$, and hence another $\mathcal{A}_{\text{reg}}$.
 
 The second ingredient required by the Wilsonian formulation is the specification of a ``hypothesis state'' 
-$\rho_0$ on $\mathcal{A}_{\text{reg}}$. This state is also dictated by physics: it describes a restriction on the space of states we intend to model to those fluctuations around $\rho_0$. In condensed matter language the hypothesis state describes an initial starting point in some prespecified bulk phase of matter. The core idea of the Wilsonian formulation is that quantum fields are precisely given by the scaling limits of quantum phase transitions; thus quantum field states need to apply to systems approaching phase transitions: we use $\rho_0$ to build such states approaching by the addition of particles/fluctuations on $\rho_0$. It is too much to hope that we could describe regions of the phase diagram disconnected by phase transitions in terms of $\rho_0$: we would need to replace $\rho_0$ by another representative of a disconnected phase. A key example to have in mind here is that of a topologically trivial phase represented by, say, a product state $\rho_0$, and a topologically nontrivial phase represented by, say, a toric code \cite{kitaev_fault-tolerant_2003} ground state $\rho_0'$. There is a phase transition separating these two phases. We can model this transition from either side by a quantum field theory, but it is unreasonable to expect that fluctuations around $\rho_0$ will give us a good model for the topological phase $\rho_0'$ past the phase boundary. Technically speaking: $\rho_0$ and $\rho_0'$ belong to unitarily inequivalent representations of $\mathcal{A}_{\text{reg}}$. 
+$\rho_0$ on $\mathcal{A}_{\text{reg}}$. This state is dictated by \emph{physical considerations}: it amounts to a restriction of the states we intend to model to those with fluctuations around $\rho_0$. In condensed matter language the hypothesis state describes an initial starting point in some prespecified bulk phase of matter. The core idea of the Wilsonian formulation is that quantum fields are precisely given by the scaling limits of quantum phase transitions; thus quantum field states need to apply to systems approaching phase transitions: we use $\rho_0$ to build such states by the addition of particles/fluctuations on $\rho_0$. The standard choice for $\rho_0$ is as a \emph{renormalisation group fixed point}, which is a state left invariant by the coarse-graining channel $\mathcal{F}^*$. There are a plethora of such states given by any right inverse of $\mathcal{F}^*$ applied to some initial lattice state. (Many of these possible RG fixed points are physically identical, however.)
+
+
+It is too much to hope that we could describe regions of the phase diagram disconnected by phase transitions in terms of $\rho_0$: we would need to replace $\rho_0$ by another representative of a disconnected phase. A key example to have in mind here is that of a topologically trivial phase represented by, say, a product state $\rho_0$, and a topologically nontrivial phase represented by, say, a toric code \cite{kitaev_fault-tolerant_2003} ground state $\rho_0'$. There is a phase transition separating these two phases. We can model this transition from either side by a quantum field theory, but it is unreasonable to expect that fluctuations around $\rho_0$ will give us a good model for the topological phase $\rho_0'$ past the phase boundary. Technically speaking: $\rho_0$ and $\rho_0'$ belong to unitarily inequivalent representations of $\mathcal{A}_{\text{reg}}$. 
 
 Once we've selected our representative hypothesis state $\rho_0$ we can obtain a Hilbert space modelling particles/fluctuations. We do this by exploiting the \emph{GNS representation}, which is another way of saying that we focus only on $\rho_0$ and states related to $\rho_0$ by the addition of at most a finite\footnote{Finite can mean $6.02\times 10^{23}$.} number of particles. The idea is now to think of the observables $A\in \mathcal{A}_{\text{reg}}$ themselves as kets $|A\rangle$ in some Hilbert space by introducing the (possibly degenerate or singular) inner product on $\mathcal{A}_{\text{reg}}$ via
 \begin{equation}
@@ -532,7 +543,7 @@ to produce $|A\rangle \equiv A\otimes\mathbb{I}|\Omega\rangle$, so that
 \end{equation}
 Thus, the GNS representation is nothing other than the process of \emph{purification} in quantum information theory \cite{nielsen_quantum_2000}.
 
-In our specific running example the GNS representation of $\mathcal{A}_{\text{reg}}$ afforded by the product state  $\Omega \equiv (\rho_j)_{j\in \mathbb{Z}^+}$, where $\rho_j \equiv |\Omega_j\rangle\langle \Omega_j|$ with $|\Omega_j\rangle \equiv \bigotimes_{l\in \mathbb{Z}} |0\rangle$, may be understood as follows. Firstly, the state $\mathcal{H}$ in the GNS Hilbert space  $|\Omega\rangle$ corresponding to $\rho_0$ is a product state at every scale, i.e., no matter on what lattice spacing you look it is a product state. This is our \emph{vacuum state}. Every other state $|\phi\rangle$ in $\mathcal{H}$ is obtained from $|\Omega\rangle$ by applying operators from $\mathcal{A}_{\text{reg}}$ to $|\Omega\rangle$; by construction $|\phi\rangle$ is equivalent to a superposition of product states at some lattice spacing $a_l = 2^{-l}$ which can only differ from $|0\rangle$ in a finite number of places, i.e.,  
+In our specific running example the GNS representation of $\mathcal{A}_{\text{reg}}$ afforded by the product state  $\Omega \equiv (\rho_j)_{j\in \mathbb{Z}^+}$, where $\rho_j \equiv |\Omega_j\rangle\langle \Omega_j|$ with $|\Omega_j\rangle \equiv \bigotimes_{l\in \mathbb{Z}} |0\rangle$, may be understood as follows. Firstly, the state  $|\Omega\rangle$ in the GNS Hilbert space $\mathcal{H}$ corresponding to $\rho_0$ is a product state at every scale, i.e., no matter on what lattice spacing you look it is a product state. This is our \emph{vacuum state}. Every other state $|\phi\rangle$ in $\mathcal{H}$ is obtained from $|\Omega\rangle$ by applying operators from $\mathcal{A}_{\text{reg}}$ to $|\Omega\rangle$; by construction $|\phi\rangle$ is equivalent to a superposition of product states at some lattice spacing $a_l = 2^{-l}$ which can only differ from $|0\rangle$ in a finite number of places, i.e.,  
 \begin{equation}
 	|\phi\rangle_l = \sum_{n=0}^\infty\sum_{j_1 < j_2 < \ldots< j_n \in \mathbb{Z}} \phi_{j_1,j_2, \ldots, j_n}|j_1,j_2, \ldots, j_n\rangle_l,
 \end{equation} 
@@ -549,7 +560,7 @@ It turns out that we can canonically identify our Hilbert space $\mathcal{H}$ as
 \begin{equation}
 	 |j_1,j_2, \ldots, j_n\rangle_l \equiv a^\dag\left(\chi_{\left[\frac{j_1}{2^l}, \frac{j_1+1}{2^l}\right)}\right)a^\dag\left(\chi_{\left[\frac{j_2}{2^l}, \frac{j_2+1}{2^l}\right)}\right)\cdots a^\dag\left(\chi_{\left[\frac{j_n}{2^l}, \frac{j_n+1}{2^l}\right)}\right)|\Omega\rangle.
 \end{equation} 
-One can verify that indeed the inner products between any two vectors in $\mathcal{H}$ and the corresponding pair of vectors in $\mathfrak{F}_+(L^2(\mathbb{R}, \mu))$ are identical so that this is indeed an isomorphism of Hilbert spaces. It turns out that the subspace of $\mathfrak{F}_+(L^2(\mathbb{R}, \mu))$ so constructed is actually equal to the whole of $\mathfrak{F}_+(L^2(\mathbb{R}, \mu))$: multiply occupied single-particles states such as 
+One can verify that indeed the inner products between any two vectors in $\mathcal{H}$ and the corresponding pair of vectors in $\mathfrak{F}_+(L^2(\mathbb{R}, \mu))$ are identical so that this is indeed an isomorphism of Hilbert spaces. It turns out that the subspace of $\mathfrak{F}_+(L^2(\mathbb{R}, \mu))$ so constructed is actually equal to the whole of $\mathfrak{F}_+(L^2(\mathbb{R}, \mu))$: multiply occupied single-particle states such as 
 \begin{equation}
 	(a^\dag(\chi_{[a,b)}))^m |\Omega\rangle,
 \end{equation}
@@ -562,35 +573,23 @@ appear to be missing from $\mathcal{H}$, however this is an illusion because we 
 		&\approx \frac{1}{{2^m}}\sum_{j\not=k=0}^{2^m -1} |j,k\rangle_m.
 	\end{split}
 \end{equation}
-This approximation may be made arbitrarily good by taking $m\rightarrow \infty$. In this way we deduce that $\mathcal{H}$ is actually isomorphic to $\mathfrak{F}_+(L^2(\mathbb{R}, \mu))$. Thus the regulated continuum limit in this case is nothing but the space of bosons moving on the real line. 
-
-The next vital ingredient for the Wilsonian formulation is the selection of an operationally motivated distance measure on $\mathcal{A}_{\text{reg}}$. We again employ the Bures metric on $\mathcal{S}(\mathcal{A}_{2^{-j}})$:
-\begin{equation}
-	D^2_j(\rho_1,\rho_2) \equiv 2\left(1-\tr\left(\sqrt{\sqrt{\rho_1}\rho_2\sqrt{\rho_1}}\right)\right).
-\end{equation}
-(Here we are assuming the states are representable as trace-class operators; we intend to be cavalier about such things throughout these notes. For the reader concerned about the lack of rigour at this point we simply mention that a sensible way to deal with this quantity is to go to the GNS representation afforded by the state $\rho_1$. \red{[Don't we get the IR catastrophy this way, given that we'll want to have converging sequences of translation invarient states, which would then all be orthogonal to each other.]})
-
-It is a nontrivial question how this metric extends from $\mathcal{S}(\mathcal{A}_{2^{-j}})$ to $\mathcal{S}_{\text{reg}}$ in a natural way. We deal with this by defining, for any pair $\rho_1$ and $\rho_2$ of states in $\mathcal{S}_{\text{reg}}$ the metric
-\begin{equation}
-	D^2(\rho_1,\rho_2) \equiv \lim_{j\rightarrow\infty}  D^2_j(\rho_{1,j},\rho_{2,j}).
-\end{equation}
-The existence of this limit is guaranteed by the fact that $D^2_j(\rho_{1,j},\rho_{2,j})$ is a nonnegative bounded monotone increasing function of $j$, thanks to the fact that the Bures metric is \emph{monotone} and decreasing under the action of any channel and that for $j<k$, $\rho_{1,j}$ (respectively, $\rho_{2,j}$) is the image of the CP map $\mathcal{F}_{j,k}^{*}$ applied to $\rho_{1,k}$ (respectively, $\rho_{2,k}$). 
-
+This approximation may be made arbitrarily good by taking $m\rightarrow \infty$. In this way we deduce that $\mathcal{H}$ is actually isomorphic to $\mathfrak{F}_+(L^2(\mathbb{R}, \mu))$. Thus the regulated continuum limit in this case is none other than the space of bosons moving on the real line. 
 
 Even though we've obtained that the kinematics $\mathcal{H}$ for the regulated observables are equivalent to bosons moving on the line we are still not done. Just as for the momentum-space cutoff case, we have that any state in $\mathcal{H}$ has an effective cutoff: any state in $\mathcal{H}$ is well-approximated by a converging sequence of states $|\phi\rangle_l$ at scale $l$. Thus for any state $|\phi\rangle$ there is a cutoff scale $2^l$ such that $|\phi\rangle$ is, for all practical observable purposes, equivalent to the cutoff state $|\phi\rangle_l$. Thus we come to our next ingredient, namely, the specification of a subset $\mathcal{A}_\sigma \subset \mathcal{A}_{\text{reg}}$ of observables corresponding to large-scale experiments at scale $\sigma$. 
 
-The final ingredient we need for a Wilsonian formulation is the identification of a subset $\mathcal{A}_\sigma$ of observables corresponding to an experiment at some large terrestrial scale $\sigma$. We achieve this by building a ``blurring'' CP map $\mathcal{E}_{\sigma}:\mathcal{A}_{\text{reg}}\rightarrow \mathcal{A}_{\text{reg}}$ and define 
+The next ingredient we need for a Wilsonian formulation is the identification of a subset $\mathcal{A}_\sigma^+$ of effects corresponding to an experiment at some large terrestrial scale $\sigma$. We achieve this by building a ``blurring'' CP map $\mathcal{E}_{\sigma}:\mathcal{A}_{\text{reg}}\rightarrow \mathcal{A}_{\text{reg}}$ and define 
 \begin{equation}
-	\mathcal{A}_\sigma \equiv \mathcal{E}_{\sigma}(\mathcal{A}_{\text{reg}}).
+	\mathcal{A}_\sigma^+ \equiv \mathcal{E}_{\sigma}(\mathcal{A}_{\text{reg}}^+).
 \end{equation}
-There is a deal of arbitrariness here in how we define blurring maps; there is no abstract recipe we can appeal to. These maps are determined by \emph{physics}. The following map may be argued to provide a reasonable model for observables accessible at scale $\sigma > 0$: we begin by introducing the Lindblad operator $\mathcal{L}^{(j)}:\mathcal{A}_{2^{-j}} \rightarrow \mathcal{A}_{2^{-j}}$, where
+There is a deal of arbitrariness here in how we define blurring maps as there is no abstract recipe we can appeal to; these maps are determined by \emph{physics}. The following map may be argued to provide a reasonable model for observables accessible at scale $\sigma > 0$: we begin by introducing the Lindblad operator $\mathcal{L}^{(j)}:\mathcal{A}_{2^{-j}} \rightarrow \mathcal{A}_{2^{-j}}$, where
 \begin{equation}
 	\mathcal{L}^{(j)}(\cdot) = 2\sum_{k\in \mathbb{Z}} \left(\textsc{swap}_{k,k+1}(\cdot)\textsc{swap}_{k,k+1} - \mathcal{I}(\cdot)\right),
 \end{equation}
 and $\mathcal{I}$ is the identity superoperator. This Lindblad generator may then be exploited to define the CP map
 \begin{equation}
-	\mathcal{E}_\sigma^{(j)} \equiv e^{(\sigma 2^{j})^2\mathcal{L}^{(j)}}.
+	\mathcal{E}_\sigma^{(j)} \equiv e^{(\sigma 2^{j})^2\mathcal{L}^{(j)}},
 \end{equation} 
+which corresponds to blurring on a lattice of lattice spacing $2^{-j}$.
 We set aside, for the moment, the question of the continuity of this operator: a relatively simple argument shows that it acts continuously on operators with finite support. (It is at least strongly continuous with respect to the strong-operator topology generated by the GNS representation afforded by the product state $|\Omega\rangle$). Physically speaking the CP map $\mathcal{E}_{\sigma}$ subjects operators to a diffusion process for a period of ``time'' $\tau = (\sigma 2^{j})^2$: for large times $\tau$ any local operator $A_k$ will evolve to an operator of the form $e^{\tau\mathcal{L}^{(j)}}(A_k) \approx \frac{1}{\sqrt{8\pi \tau}}\sum_l e^{-\frac{(l-k)^2}{8\tau}} A_l$.
 
 Because this is a diffusion process we know that a typical operator will have wandered approximately $\sqrt{\tau} = \sigma 2^j$ sites from its initial position. Since the lattice spacing is $2^{-j}$ we see that an operator initially localised at some position will have wandered approximately a physical distance $\sigma$ from its initial position. The diffusion map $\mathcal{E}_\sigma^{(j)}$ can now be used to build a blurring map on $\mathcal{A}_{\text{reg}}$ in the following fashion. Firstly, note that the action of $\mathcal{E}_\sigma^{(j)}$ can be extended in a well-defined way to apply to all of $\mathcal{A}_{\text{reg}}$ exploiting the channels $\mathcal{F}$ and $\mathcal{G}$:
@@ -602,16 +601,26 @@ Using the channel $\mathcal{E}_\sigma^{(j)}$ we arrive at our final definition
 \begin{equation}
 	\mathcal{E}_\sigma \equiv \lim_{j\rightarrow \infty} \mathcal{E}_\sigma^{(j)}.
 \end{equation}
-\red{[Given this limit, it probably doesn't actually matter how $\mathcal E^{(j)}$ is defined on $A_k$ with $k > j$. So maybe this can be simplified?]}
 Here the limit must be taken with respect to a topology on $\mathcal{A}_{\text{reg}}$; we expect that the limit exists in the strong-operator topology, but it is plausible that it also exists for the norm topology (although, to be honest, we aren't that hopeful...) 
 
-The limiting channel $\mathcal{E}_\sigma$ may be described in words as follows: suppose we have an observable $A_j$ on a lattice with spacing $2^{-j}$. First embed this operator into an equivalent fine-grained observable on the lattice with finer spacing $2^{-k}$ using the channel $\mathcal{F}_{j,k}$. Then subject this fine-grained observable to blurring according to $\mathcal{E}_\sigma^{(k)}$. As $k$ is taken larger and larger the result of this operation will be a sequence $\mathcal{E}_\sigma^{(k)}(A_j)$ of observables in $\mathcal{A}_{\text{reg}}$ on finer and finer lattices. \red{[the role of $j$ and $k$ is inverted compared to the definition, which can be confusing.]} These observables will be better and better approximated by a gaussian weighted mixture of translates of the initial operator. The actual action of this channel is depicted in the following figure. 
+The limiting channel $\mathcal{E}_\sigma$ may be described in words as follows: suppose we have an observable $A_k$ on a lattice with spacing $2^{-k}$. First embed this operator as an equivalent fine-grained observable on the lattice with finer spacing $2^{-j}$ using the channel $\mathcal{F}_{k,j}$. Then subject this fine-grained observable to blurring according to $\mathcal{E}_\sigma^{(j)}$. As $j$ is taken larger and larger the result of this operation will be a sequence $\mathcal{E}_\sigma^{(j)}(A_k)$ of observables in $\mathcal{A}_{\text{reg}}$ on finer and finer lattices. These observables will be better and better approximated by a gaussian weighted mixture of translates of the initial operator. The actual action of this channel is depicted in the following figure. 
 
-Finally, we define the large-scale observables at scale $\sigma$ to be the image of $\mathcal{A}_{\text{reg}}$ under $\mathcal{E}_\sigma$:
+Finally, we define the large-scale observables at scale $\sigma$ to be the image of $\mathcal{A}_{\text{reg}}^+$ under $\mathcal{E}_\sigma$:
 \begin{equation}
 	\mathcal{A}_\sigma^+ \equiv \mathcal{E}_\sigma(\mathcal{A}_{\text{reg}}^+).
 \end{equation}
-\red{[Doesn't that make sense only as a GPT, hence restricted to the effects?]}
+
+The final ingredient for the Wilsonian formulation is the selection of an operationally motivated distance measure on $\mathcal{A}_{\text{reg}}$. We again employ the Bures metric on $\mathcal{S}(\mathcal{A}_{2^{-j}})$:
+\begin{equation}
+	D^2_j(\rho_1,\rho_2) \equiv 2\left(1-\tr\left(\sqrt{\sqrt{\rho_1}\rho_2\sqrt{\rho_1}}\right)\right).
+\end{equation}
+(Here we are assuming the states are representable as trace-class operators; we intend to be cavalier about such things throughout these notes. For the reader concerned about the lack of rigour at this point we simply mention that a sensible way to deal with this quantity is to go to the GNS representation afforded by the state $\rho_1$. 
+
+It is a nontrivial question how this metric extends from $\mathcal{S}(\mathcal{A}_{2^{-j}})$ to $\mathcal{S}_{\text{reg}}$ in a natural way. We deal with this by defining, for any pair $\rho_1$ and $\rho_2$ of states in $\mathcal{S}_{\text{reg}}$ the metric
+\begin{equation}
+	D^2(\rho_1,\rho_2) \equiv \lim_{j\rightarrow\infty}  D^2_j(\rho_{1,j},\rho_{2,j}).
+\end{equation}
+The existence of this limit is guaranteed by the fact that $D^2_j(\rho_{1,j},\rho_{2,j})$ is a nonnegative bounded monotone increasing function of $j$, thanks to the fact that the Bures metric is \emph{monotone} and decreasing under the action of any channel and that for $j<k$, $\rho_{1,j}$ (respectively, $\rho_{2,j}$) is the image of the CP map $\mathcal{F}_{j,k}^{*}$ applied to $\rho_{1,k}$ (respectively, $\rho_{2,k}$). 
 
 For the reader dissatisfied with the density of unproven assertions the previous the construction of large-scale observables we supply here an alternative, presumably equivalent, construction.
 
